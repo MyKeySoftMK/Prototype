@@ -7,7 +7,7 @@ Aktueller Stand: unvollständig
 
 01_WPF
 
-Stand: Ein "leeres" WPF-C#-Projekt - dort soll der Code rein, der die Blazor-App startet
+Stand: Mit dieser WPF-App wird die Blazor-App gestartet
 
 10_Anwendung-Blazor
 

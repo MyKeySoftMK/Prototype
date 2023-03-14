@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <Reference Include="NLog">
-      <HintPath>..\..\Dlls\NLog.dll</HintPath>
+      <HintPath>..\Dlls\NLog.dll</HintPath>
     </Reference>
   </ItemGroup>
 

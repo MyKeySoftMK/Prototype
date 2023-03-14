@@ -5,6 +5,12 @@
     <Platforms>AnyCPU;x86;x64</Platforms>
 	  <Nullable>enable</Nullable>
 	  <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Very important for using it in Blazor WebView 
+         Also be ware of the fact that only one project should use
+         the root path as StaticWebAssetBasePath
+    -->
+    <StaticWebAssetBasePath>/</StaticWebAssetBasePath>
+    <StaticWebAssetProjectMode>Root</StaticWebAssetProjectMode>
   </PropertyGroup>
 
   <ItemGroup>

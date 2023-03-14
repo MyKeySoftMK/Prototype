@@ -1,0 +1,14 @@
+﻿@page "/counter"
+
+<h3>Counter</h3>
+<button @onclick="OnClick" >Increment</button>
+<div class="counter">@CounterValue</div>
+
+@code {
+    public int CounterValue { get; set; } = 0;
+
+    public void OnClick()
+    {
+        CounterValue++;
+    }
+}

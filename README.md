@@ -19,7 +19,7 @@ Zusätzlich ist noch implementiert, dass weitere Module dynamisch nachgeladen we
 
 Stand: Hier handelt es sich um ein simples Beispiel für ein Modul. Es hat keine weiteren Funktionen, sondern dient nur der Anzeige einer weiteren "Funktion" (hier z.B. das Anlegen von neuen Fahrzeugen)
 
-Anmerkung: Aktuell kommt es da zu einem Fehler, weil ja keine DB-Anbindung ist
+Anmerkung: Aktuell kommt es da zu einem Fehler, weil ja keine DB-Anbindung ist - kann man mit 3x F5 einfach überspringen
 
 90_Framework
 

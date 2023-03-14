@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>KMF.WrkFlows.Cars.DataAccess</RootNamespace>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<EntityDeploy Include="..\KMF.WrkFlows.Cars.EDMX\Cars\CarsEDM.edmx" Link="Cars\CarsEDM.edmx" />
+	<None Include="..\KMF.WrkFlows.Cars.EDMX\Cars\CarsEDM.edmx.diagram" Link="Cars\CarsEDM.edmx.diagram" />
+	<Compile Include="..\KMF.WrkFlows.Cars.EDMX\Cars\Car.vb" Link="Cars\Car.vb" />
+    <Compile Include="..\KMF.WrkFlows.Cars.EDMX\Cars\CarsEDM.Context.vb" Link="Cars\CarsEDM.Context.vb" />
+    <Compile Include="..\KMF.WrkFlows.Cars.EDMX\Cars\CarsEDM.Designer.vb" Link="Cars\CarsEDM.Designer.vb" />
+    <Compile Include="..\KMF.WrkFlows.Cars.EDMX\Cars\CarsEDM.vb" Link="Cars\CarsEDM.vb" />
+    <Compile Include="..\KMF.WrkFlows.Cars.EDMX\Cars\GenerateEDMExtensions.vb" Link="Cars\GenerateEDMExtensions.vb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Cars\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="MySql.Data" Version="8.0.27" />
+    <PackageReference Include="MySql.Data.EntityFramework" Version="8.0.27" />
+  </ItemGroup>
+
+
+</Project>

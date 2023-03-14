@@ -1,0 +1,84 @@
+﻿<#@ template language="VB" debug="true" hostSpecific="true" #>
+<#@ output extension=".vb" #>
+<#@ Assembly Name="System.Core.dll" #>
+<#@ Assembly Name="System.Xml.dll" #>
+<#@ Assembly Name="System.Xml.Linq.dll" #>
+<#@ Assembly Name="System.Windows.Forms.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+' ###################################################################
+' #  T4-Name	: GenerateWebViewModelEntryPointsInterface.tt       #
+' #  Date		: 2021-10-27                                        #
+' #  Version	: 1                           (c) MyKey-Soft 2021   #
+' ###################################################################
+Imports MYKEY.FxCore.Common.Application
+Imports System.Windows
+Imports MYKEY.FxCore.Common
+Imports <#=GetValue("EntityNamespace")#>
+
+Public Interface I<#=GetValue("ModelName")#>_ViewModelEntryPoints
+
+#Region "Functions"
+
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="QParam"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Function EntryPoint_DefineFullQueryParameter(Optional QParam As QueryParameters = Nothing) As QueryParameters
+
+#End Region
+
+#Region "Methods"
+    
+
+#End Region
+
+
+End Interface
+
+<#+
+Public Function GetCtlValue(ValueName As String) As String
+	
+	Dim result As String
+
+	Dim doc As New XmlDocument()
+
+	Dim absolutePath As String = Me.Host.ResolvePath("ControlsViewModelData.xml")
+
+	doc.Load(absolutePath)
+
+	dim node As XmlNode = doc.SelectSingleNode("ControlsViewModel")
+		
+	result= node.SelectSingleNode(ValueName).InnerText
+	
+	Return result
+
+End Function
+
+Public Function GetValue(ValueName As String) As String
+	
+	Dim result As String
+
+	Dim doc As New XmlDocument()
+
+	Dim absolutePath As String = Me.Host.ResolvePath("ViewModelData.xml")
+
+	doc.Load(absolutePath)
+
+	dim node As XmlNode = doc.SelectSingleNode("ViewModelData")
+		
+	result= node.SelectSingleNode(ValueName).InnerText
+	
+	Return result
+
+End Function
+#>

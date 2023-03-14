@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>KMF.WrkFlows.Cars.Web</RootNamespace>
+    <TargetFramework>net6.0-windows</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="4.7.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KMF.WrkFlows.Cars.DataAccess\KMF.WrkFlows.Cars.DataAccess.vbproj" />
+    <ProjectReference Include="..\KMF.WrkFlows.Cars.Domain\KMF.WrkFlows.Cars.Domain.vbproj" />
+    <ProjectReference Include="..\MYKEY.FxCore.Common.Application\MYKEY.FxCore.Common.Application.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MYKEY.FxCore.Common">
+      <HintPath>..\Dlls\MYKEY.FxCore.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="MYKEY.FxCore.Web.Application">
+      <HintPath>..\Dlls\MYKEY.FxCore.Web.Application.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ViewModels\CarManagement\GenerateWebViewModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateWebViewModel.vb</LastGenOutput>
+    </None>
+    <None Update="ViewModels\CarManagement\GenerateWebViewModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateWebViewModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ViewModels\CarManagement\GenerateWebViewModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateWebViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="ViewModels\CarManagement\GenerateWebViewModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateWebViewModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

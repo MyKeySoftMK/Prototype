@@ -1,0 +1,24 @@
+﻿@page "/carmanagement/init"
+
+@using KMF.WrkFlows.Cars.Web
+@using KMF.WrkFlows.Cars.DataAccess.Cars
+
+
+<h1>Fahrzeuge verwalten</h1>
+
+<RadzenButton Text="Neu" />
+
+<RadzenDataGrid Data="@_ViewModel.Cars" TItem="Car">
+
+</RadzenDataGrid>
+
+@code {
+
+    CarManagementViewModel _ViewModel;
+
+    protected override void OnInitialized()
+    {
+        _ViewModel = new CarManagementViewModel();
+
+    }
+}

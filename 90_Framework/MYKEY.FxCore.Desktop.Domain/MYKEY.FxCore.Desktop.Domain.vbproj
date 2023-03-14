@@ -1,0 +1,404 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <RootNamespace>MYKEY.FxCore.Desktop.Domain</RootNamespace>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Version>1.0.1214</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="NLog" Version="4.7.12" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MYKEY.FxCore.EntityFramework\MYKEY.FxCore.EntityFramework.vbproj" />
+    <ProjectReference Include="..\MYKEY.FxCore.WpfMvvm\MYKEY.FxCore.WpfMvvm.vbproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Functions\AdditionalTypes\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\AdditionalTypes\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\AdditionalTypes\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\AutomationManagement\GenerateCoreModel.tt">
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="Functions\AutomationManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="Functions\AutomationManagement\GenerateCoreModelInterface.tt">
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="Functions\CheckListManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\CheckListManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\CheckListManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\CheckListsTemplateManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\CheckListsTemplateManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\CheckListsTemplateManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\GroupListManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\GroupListManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\GroupListManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\OlbMenuEntryManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\OlbMenuEntryManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\OlbMenuEntryManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\OlbMenuGroupManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\OlbMenuGroupManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\OlbMenuGroupManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\PrintGroupManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\PrintGroupManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\PrintGroupManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\PrintInputControlManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\PrintInputControlManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\PrintInputControlManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\PrintManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\PrintManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\PrintManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\Settings\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\Settings\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\Settings\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\UserGroupManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\UserGroupManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\UserGroupManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\UserGroupRoleManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\UserGroupRoleManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\UserGroupRoleManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\UserManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\UserManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\UserManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Functions\AdditionalTypes\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\AdditionalTypes\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\AdditionalTypes\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\AutomationManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\AutomationManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\AutomationManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\CheckListManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\CheckListManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\CheckListManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\CheckListsTemplateManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\CheckListsTemplateManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\CheckListsTemplateManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\GroupListManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\GroupListManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\GroupListManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\OlbMenuEntryManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\OlbMenuEntryManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\OlbMenuEntryManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\OlbMenuGroupManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\OlbMenuGroupManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\OlbMenuGroupManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\PrintGroupManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\PrintGroupManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\PrintGroupManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\PrintInputControlManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\PrintInputControlManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\PrintInputControlManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\PrintManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\PrintManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\PrintManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\Settings\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\Settings\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\Settings\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\UserGroupManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\UserGroupManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\UserGroupManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\UserGroupRoleManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\UserGroupRoleManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\UserGroupRoleManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\UserManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\UserManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\UserManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\" />
+  </ItemGroup>
+</Project>

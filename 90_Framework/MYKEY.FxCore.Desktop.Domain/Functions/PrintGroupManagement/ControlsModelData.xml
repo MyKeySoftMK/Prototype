@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ControlsModel>
+  <ModelName></ModelName>
+  <AlbCount>1</AlbCount>
+
+  <!-- Name der Hinzufügenden Entität im Model -->
+  <Alb1ReferenceEntity>Print</Alb1ReferenceEntity>
+
+  <!-- Spaltenanen in der Linktabelle -->
+  <Alb1ReferenceColumn>PrintGUID</Alb1ReferenceColumn>
+  <Alb1LinkColumn>PrintGroupGUID</Alb1LinkColumn>
+
+  <!-- Namespace der Linktabelle -->
+  <Alb1LinkNamespace>FxNTPrints.PrintToPrintGroup</Alb1LinkNamespace>
+
+  <!-- Namespace der Entität, die die Verweise hinzugefügt bekommt-->
+  <Alb1EntityNamespace>FxNTPrints.PrintGroup</Alb1EntityNamespace>
+
+  <!-- Name der Linktabelle im Model -->
+  <Alb1LinkCollection>PrintToPrintGroups</Alb1LinkCollection>
+
+  <!-- Name der verwalteten Entität -->
+  <Alb1EntityCollection>PrintGroups</Alb1EntityCollection>
+
+  <!-- In welcher Navigationseigenschaft die Zuordnung gespeichert wird-->
+  <Alb1IncludeCollection>Prints</Alb1IncludeCollection>
+  <Alb1ReferenceCollection>Prints</Alb1ReferenceCollection>
+  
+  <!-- Übersetzungstext der Entität -->
+  <Alb1ReferenceEntityTranslation>Ausdrucke</Alb1ReferenceEntityTranslation>
+
+  <!-- Welche Eigenschaft für das Zusammenzählen der Unterentitäten verwendet wird -->
+  <Alb1GroupingProperty>GUID</Alb1GroupingProperty>
+
+  <Alb2ReferenceEntity>UserGroupRole</Alb2ReferenceEntity>
+  <Alb2ReferenceColumn>RoleGUID</Alb2ReferenceColumn>
+  <Alb2LinkColumn>UserGroupGUID</Alb2LinkColumn>
+
+  <Alb2LinkNamespace>FxNTUsers.UserGroupToUserGroupRole</Alb2LinkNamespace>
+  <Alb2EntityNamespace>FxNTUsers.UserGroup</Alb2EntityNamespace>
+  <Alb2LinkCollection>UserGroupToUserGroupRoles</Alb2LinkCollection>
+
+  <Alb2EntityCollection>UserGroups</Alb2EntityCollection>
+  <Alb2IncludeCollection>UserGroupRoles</Alb2IncludeCollection>
+  <Alb2ReferenceCollection>UserGroupRoles</Alb2ReferenceCollection>
+  <Alb2ReferenceEntityTranslation>Benutzergruppenrolle</Alb2ReferenceEntityTranslation>
+  <Alb2GroupingProperty>CongGuid</Alb2GroupingProperty>
+
+  <AcbCount>0</AcbCount>
+
+  <!-- Name der Hinzufügenden Entität im Model -->
+  <Acb1ReferenceEntity>Privilege</Acb1ReferenceEntity>
+
+  <!-- Spaltenanen in der Linktabelle -->
+  <Acb1ReferenceColumn>PrivilegeGUID</Acb1ReferenceColumn>
+  <Acb1LinkColumn>PublisherGUID</Acb1LinkColumn>
+
+  <!-- Namespace der Linktabelle -->
+  <Acb1LinkNamespace>PublisherToPrivilege</Acb1LinkNamespace>
+
+  <!-- Namespace der Entität, die die Verweise hinzugefügt bekommt-->
+  <Acb1EntityNamespace>Publishers.Publisher</Acb1EntityNamespace>
+
+  <!-- Name der Linktabelle im Model -->
+  <Acb1LinkCollection>PublisherToPrivileges</Acb1LinkCollection>
+
+  <!-- Name der verwalteten Entität -->
+  <Acb1EntityCollection>Publishers</Acb1EntityCollection>
+
+  <!-- In welcher Navigationseigenschaft die Zuordnung gespeichert wird-->
+  <Acb1IncludeCollection>Privileges</Acb1IncludeCollection>
+
+  <!-- Übersetzungstext der Entität -->
+  <Acb1ReferenceEntityTranslation>Verkündigermerkmale</Acb1ReferenceEntityTranslation>
+
+  <AdditionalCount>0</AdditionalCount>
+
+  <!-- Wie die Entität im EDM benannt ist, die die Informationen enthält -->
+  <Additional1Entity>AdditionalInformation</Additional1Entity>
+
+  <!-- Wie die Sammlung der Entität genannt wird -->
+  <Additional1Collection>AdditionalInformations</Additional1Collection>
+
+  <!-- Zu welcher Entität sie zusätzlichen Infos gehören -->
+  <Additional1ParentEntity>Publisher</Additional1ParentEntity>
+
+  <!-- Welches Feld in der Datenbank die Verbindung zu dem Parent enthält -->
+  <Additional1ParentField>PublisherGUID</Additional1ParentField>
+
+</ControlsModel>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3bdf1219918f44ddac8e45c72e4008e0" Name="Diagram1">
+        <EntityTypeShape EntityType="FxNTUsersModel.UserGroupRole" Width="1.5" PointX="10.375" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FxNTUsersModel.UserGroup" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FxNTUsersModel.UserGroupToUserGroupRole" Width="2" PointX="7.625" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FxNTUsersModel.User" Width="1.5" PointX="0.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FxNTUsersModel.UserToUserGroup" Width="1.5" PointX="2.625" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="FxNTUsersModel.FK_FXXTUserGroupToUserGroupRole_FXXTUserGroupRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="FxNTUsersModel.FK_FXXTUserGroupToUserGroupRole_FXXTUserGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="FxNTUsersModel.FK_FXXTUserToUserGroups_FXXTUserGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="FxNTUsersModel.FK_FXXTUserToUserGroups_FXXTUsers" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

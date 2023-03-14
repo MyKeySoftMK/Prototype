@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FxNTAutomationsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FxNTAutomations">
+          <Key>
+            <PropertyRef Name="AutomationGUID" />
+          </Key>
+          <Property Name="AutomationGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AutomationGroupGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AutomationName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="AutomationDisplayName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="AutomationDescription" Type="varchar" MaxLength="4096" Nullable="false" />
+          <Property Name="AutomationCommand" Type="varchar(max)" Nullable="false" />
+          <Property Name="AutomationCron" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTAutomationsExecutions">
+          <Key>
+            <PropertyRef Name="EntryGUID" />
+          </Key>
+          <Property Name="EntryGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AutomationGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ExecutionTime" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ExecutionStatus" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="IsCronExecution" Type="bit" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTGroupLists">
+          <Key>
+            <PropertyRef Name="EntryGUID" />
+          </Key>
+          <Property Name="EntryGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GroupListName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="GroupListDescription" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="GroupListValue" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="GroupListValueDescription" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="IsFXSystem" Type="bit" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FxNTAutomations_FxNTGroupLists">
+          <End Role="FxNTGroupLists" Type="Self.FxNTGroupLists" Multiplicity="1" />
+          <End Role="FxNTAutomations" Type="Self.FxNTAutomations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTGroupLists">
+              <PropertyRef Name="EntryGUID" />
+            </Principal>
+            <Dependent Role="FxNTAutomations">
+              <PropertyRef Name="AutomationGroupGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FxNTAutomationsExecutions_FxNTAutomations">
+          <End Role="FxNTAutomations" Type="Self.FxNTAutomations" Multiplicity="1" />
+          <End Role="FxNTAutomationsExecutions" Type="Self.FxNTAutomationsExecutions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTAutomations">
+              <PropertyRef Name="AutomationGUID" />
+            </Principal>
+            <Dependent Role="FxNTAutomationsExecutions">
+              <PropertyRef Name="AutomationGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FxNTAutomationsModelStoreContainer">
+          <EntitySet Name="FxNTAutomations" EntityType="Self.FxNTAutomations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTAutomationsExecutions" EntityType="Self.FxNTAutomationsExecutions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTGroupLists" EntityType="Self.FxNTGroupLists" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FxNTAutomations_FxNTGroupLists" Association="Self.FK_FxNTAutomations_FxNTGroupLists">
+            <End Role="FxNTGroupLists" EntitySet="FxNTGroupLists" />
+            <End Role="FxNTAutomations" EntitySet="FxNTAutomations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FxNTAutomationsExecutions_FxNTAutomations" Association="Self.FK_FxNTAutomationsExecutions_FxNTAutomations">
+            <End Role="FxNTAutomations" EntitySet="FxNTAutomations" />
+            <End Role="FxNTAutomationsExecutions" EntitySet="FxNTAutomationsExecutions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FxNTAutomationsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Automation">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupGuid" Type="Guid" Nullable="false" DefaultValue="00000000-0000-0000-0000-013000000000" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="DisplayName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="Description" Type="String" MaxLength="4096" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="Command" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="Cron" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="FxNTGroupList" Relationship="Self.FK_FxNTAutomations_FxNTGroupLists" FromRole="FxNTAutomations" ToRole="FxNTGroupLists" />
+          <NavigationProperty Name="AutomationsExecutions" Relationship="Self.FK_FxNTAutomationsExecutions_FxNTAutomations" FromRole="FxNTAutomations" ToRole="FxNTAutomationsExecutions" />
+        </EntityType>
+        <EntityType Name="AutomationsExecution">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AutomationGUID" Type="Guid" Nullable="false" />
+          <Property Name="ExecutionTime" Type="DateTime" Nullable="false" Precision="7" DefaultValue="1900-01-01 00:00:00.000Z" />
+          <Property Name="ExecutionStatus" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="IsCronExecution" Type="Boolean" Nullable="false" DefaultValue="False" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Automation" Relationship="Self.FK_FxNTAutomationsExecutions_FxNTAutomations" FromRole="FxNTAutomationsExecutions" ToRole="FxNTAutomations" />
+        </EntityType>
+        <EntityType Name="FxNTGroupList">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupListName" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupListDescription" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupListValue" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GroupListValueDescription" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsFXSystem" Type="Boolean" Nullable="false" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Automations" Relationship="Self.FK_FxNTAutomations_FxNTGroupLists" FromRole="FxNTGroupLists" ToRole="FxNTAutomations" />
+        </EntityType>
+        <Association Name="FK_FxNTAutomations_FxNTGroupLists">
+          <End Role="FxNTGroupLists" Type="Self.FxNTGroupList" Multiplicity="1" />
+          <End Role="FxNTAutomations" Type="FxNTAutomationsModel.Automation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTGroupLists">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTAutomations">
+              <PropertyRef Name="GroupGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FxNTAutomationsExecutions_FxNTAutomations">
+          <End Role="FxNTAutomations" Type="FxNTAutomationsModel.Automation" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FxNTAutomationsExecutions" Type="FxNTAutomationsModel.AutomationsExecution" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="FxNTAutomations">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTAutomationsExecutions">
+              <PropertyRef Name="AutomationGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Automations" EntityType="FxNTAutomationsModel.Automation" />
+          <EntitySet Name="AutomationsExecutions" EntityType="FxNTAutomationsModel.AutomationsExecution" />
+          <EntitySet Name="FxNTGroupLists" EntityType="Self.FxNTGroupList" />
+          <AssociationSet Name="FK_FxNTAutomations_FxNTGroupLists" Association="Self.FK_FxNTAutomations_FxNTGroupLists">
+            <End Role="FxNTGroupLists" EntitySet="FxNTGroupLists" />
+            <End Role="FxNTAutomations" EntitySet="Automations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FxNTAutomationsExecutions_FxNTAutomations" Association="Self.FK_FxNTAutomationsExecutions_FxNTAutomations">
+            <End Role="FxNTAutomations" EntitySet="Automations" />
+            <End Role="FxNTAutomationsExecutions" EntitySet="AutomationsExecutions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FxNTAutomationsModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Automations">
+            <EntityTypeMapping TypeName="FxNTAutomationsModel.Automation">
+              <MappingFragment StoreEntitySet="FxNTAutomations">
+                <ScalarProperty Name="GUID" ColumnName="AutomationGUID" />
+                <ScalarProperty Name="GroupGuid" ColumnName="AutomationGroupGuid" />
+                <ScalarProperty Name="Name" ColumnName="AutomationName" />
+                <ScalarProperty Name="DisplayName" ColumnName="AutomationDisplayName" />
+                <ScalarProperty Name="Description" ColumnName="AutomationDescription" />
+                <ScalarProperty Name="Command" ColumnName="AutomationCommand" />
+                <ScalarProperty Name="Cron" ColumnName="AutomationCron" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+                <Condition ColumnName="IsDeleted" Value="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AutomationsExecutions">
+            <EntityTypeMapping TypeName="FxNTAutomationsModel.AutomationsExecution">
+              <MappingFragment StoreEntitySet="FxNTAutomationsExecutions">
+                <ScalarProperty Name="GUID" ColumnName="EntryGUID" />
+                <ScalarProperty Name="AutomationGUID" ColumnName="AutomationGUID" />
+                <ScalarProperty Name="ExecutionTime" ColumnName="ExecutionTime" />
+                <ScalarProperty Name="ExecutionStatus" ColumnName="ExecutionStatus" />
+                <ScalarProperty Name="IsCronExecution" ColumnName="IsCronExecution" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+                <Condition ColumnName="IsDeleted" Value="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FxNTGroupLists">
+            <EntityTypeMapping TypeName="FxNTAutomationsModel.FxNTGroupList">
+              <MappingFragment StoreEntitySet="FxNTGroupLists">
+                <ScalarProperty Name="GUID" ColumnName="EntryGUID" />
+                <ScalarProperty Name="GroupListName" ColumnName="GroupListName" />
+                <ScalarProperty Name="GroupListDescription" ColumnName="GroupListDescription" />
+                <ScalarProperty Name="GroupListValue" ColumnName="GroupListValue" />
+                <ScalarProperty Name="GroupListValueDescription" ColumnName="GroupListValueDescription" />
+                <ScalarProperty Name="IsFXSystem" ColumnName="IsFXSystem" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ab180a97f34b40f3ba88aac0ae1f1384" Name="Diagram1">
+        <EntityTypeShape EntityType="FxNTPrintsModel.Print" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FxNTPrintsModel.PrintGroup" Width="2" PointX="5.5" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FxNTPrintsModel.PrintToPrintGroup" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="FxNTPrintsModel.FK_FxNTPrintToPrintGroups_FxNTPrint" ManuallyRouted="false" />
+        <AssociationConnector Association="FxNTPrintsModel.FK_FxNTPrintToPrintGroups_FxNTPrintGroups" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FxNTPrintsModel.InputControl" Width="2" PointX="11" PointY="0.625" />
+        <EntityTypeShape EntityType="FxNTPrintsModel.PrintToInputControl" Width="1.5" PointX="8.5" PointY="0.625" />
+        <AssociationConnector Association="FxNTPrintsModel.FK_FxNTPrintToInputControls_FxNTPrint" />
+        <AssociationConnector Association="FxNTPrintsModel.FK_FxNTPrintToInputControls_FxNTPrintInputControls" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

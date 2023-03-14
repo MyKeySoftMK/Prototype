@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>MYKEY.FxCore.EntityFramework</RootNamespace>
+    <TargetFramework>net6.0</TargetFramework>
+    <Version>1.0.1214</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MYKEY.FxCore.Common\MYKEY.FxCore.Common.vbproj" />
+  </ItemGroup>
+</Project>

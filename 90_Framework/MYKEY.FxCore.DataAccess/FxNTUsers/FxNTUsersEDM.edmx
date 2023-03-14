@@ -1,0 +1,539 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FxNTUsersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FxNTUserGroupRoles">
+          <Key>
+            <PropertyRef Name="UserGroupRoleGUID" />
+          </Key>
+          <Property Name="UserGroupRoleGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserGroupRoleName" Type="varchar" MaxLength="127" Nullable="false" />
+          <Property Name="UserGroupRoleDescription" Type="varchar" MaxLength="127" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTUserGroups">
+          <Key>
+            <PropertyRef Name="UserGroupGUID" />
+          </Key>
+          <Property Name="UserGroupGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserGroupName" Type="varchar" MaxLength="127" Nullable="false" />
+          <Property Name="UserGroupDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTUserGroupToUserGroupRole">
+          <Key>
+            <PropertyRef Name="EntryGUID" />
+          </Key>
+          <Property Name="EntryGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserGroupGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTUsers">
+          <Key>
+            <PropertyRef Name="UserGUID" />
+          </Key>
+          <Property Name="UserGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="varchar" MaxLength="31" Nullable="false" />
+          <Property Name="UsersDisplayName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPasswordHASH" Type="varbinary" MaxLength="256" />
+          <Property Name="UserDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DomainUser" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserIsLocked" Type="bit" Nullable="false" />
+          <Property Name="UserIsNotActive" Type="bit" Nullable="false" />
+          <Property Name="ChangePassword" Type="bit" Nullable="false" />
+          <Property Name="LoginAttempts" Type="int" Nullable="false" />
+          <Property Name="LastLogin" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTUserToUserGroups">
+          <Key>
+            <PropertyRef Name="EntryGUID" />
+          </Key>
+          <Property Name="EntryGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserGroupGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FXXTUserGroupToUserGroupRole_FXXTUserGroupRoles">
+          <End Role="FxNTUserGroupRoles" Type="Self.FxNTUserGroupRoles" Multiplicity="1" />
+          <End Role="FxNTUserGroupToUserGroupRole" Type="Self.FxNTUserGroupToUserGroupRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTUserGroupRoles">
+              <PropertyRef Name="UserGroupRoleGUID" />
+            </Principal>
+            <Dependent Role="FxNTUserGroupToUserGroupRole">
+              <PropertyRef Name="RoleGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FXXTUserGroupToUserGroupRole_FXXTUserGroups">
+          <End Role="FxNTUserGroups" Type="Self.FxNTUserGroups" Multiplicity="1" />
+          <End Role="FxNTUserGroupToUserGroupRole" Type="Self.FxNTUserGroupToUserGroupRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTUserGroups">
+              <PropertyRef Name="UserGroupGUID" />
+            </Principal>
+            <Dependent Role="FxNTUserGroupToUserGroupRole">
+              <PropertyRef Name="UserGroupGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FXXTUserToUserGroups_FXXTUserGroups">
+          <End Role="FxNTUserGroups" Type="Self.FxNTUserGroups" Multiplicity="1" />
+          <End Role="FxNTUserToUserGroups" Type="Self.FxNTUserToUserGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTUserGroups">
+              <PropertyRef Name="UserGroupGUID" />
+            </Principal>
+            <Dependent Role="FxNTUserToUserGroups">
+              <PropertyRef Name="UserGroupGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FXXTUserToUserGroups_FXXTUsers">
+          <End Role="FxNTUsers" Type="Self.FxNTUsers" Multiplicity="1" />
+          <End Role="FxNTUserToUserGroups" Type="Self.FxNTUserToUserGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTUsers">
+              <PropertyRef Name="UserGUID" />
+            </Principal>
+            <Dependent Role="FxNTUserToUserGroups">
+              <PropertyRef Name="UserGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FxNTUsersModelStoreContainer">
+          <EntitySet Name="FxNTUserGroupRoles" EntityType="Self.FxNTUserGroupRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTUserGroups" EntityType="Self.FxNTUserGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTUserGroupToUserGroupRole" EntityType="Self.FxNTUserGroupToUserGroupRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTUsers" EntityType="Self.FxNTUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTUserToUserGroups" EntityType="Self.FxNTUserToUserGroups" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FXXTUserGroupToUserGroupRole_FXXTUserGroupRoles" Association="Self.FK_FXXTUserGroupToUserGroupRole_FXXTUserGroupRoles">
+            <End Role="FxNTUserGroupRoles" EntitySet="FxNTUserGroupRoles" />
+            <End Role="FxNTUserGroupToUserGroupRole" EntitySet="FxNTUserGroupToUserGroupRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FXXTUserGroupToUserGroupRole_FXXTUserGroups" Association="Self.FK_FXXTUserGroupToUserGroupRole_FXXTUserGroups">
+            <End Role="FxNTUserGroups" EntitySet="FxNTUserGroups" />
+            <End Role="FxNTUserGroupToUserGroupRole" EntitySet="FxNTUserGroupToUserGroupRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FXXTUserToUserGroups_FXXTUserGroups" Association="Self.FK_FXXTUserToUserGroups_FXXTUserGroups">
+            <End Role="FxNTUserGroups" EntitySet="FxNTUserGroups" />
+            <End Role="FxNTUserToUserGroups" EntitySet="FxNTUserToUserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FXXTUserToUserGroups_FXXTUsers" Association="Self.FK_FXXTUserToUserGroups_FXXTUsers">
+            <End Role="FxNTUsers" EntitySet="FxNTUsers" />
+            <End Role="FxNTUserToUserGroups" EntitySet="FxNTUserToUserGroups" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FxNTUsersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="UserGroupRole">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="Description" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="UserGroups" Relationship="Self.FK_FXXTUserGroupToUserGroupRole_FXXTUserGroupRoles" FromRole="FxNTUserGroupRoles" ToRole="FxNTUserGroupToUserGroupRole" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="UserGroupRoles" Relationship="Self.FK_FXXTUserGroupToUserGroupRole_FXXTUserGroups" FromRole="FxNTUserGroups" ToRole="FxNTUserGroupToUserGroupRole" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_FXXTUserToUserGroups_FXXTUserGroups" FromRole="FxNTUserGroups" ToRole="FxNTUserToUserGroups" />
+        </EntityType>
+        <EntityType Name="UserGroupToUserGroupRole">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserGroupGUID" Type="Guid" Nullable="false" />
+          <Property Name="RoleGUID" Type="Guid" Nullable="false" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="UserGroupRole" Relationship="Self.FK_FXXTUserGroupToUserGroupRole_FXXTUserGroupRoles" FromRole="FxNTUserGroupToUserGroupRole" ToRole="FxNTUserGroupRoles" />
+          <NavigationProperty Name="UserGroup" Relationship="Self.FK_FXXTUserGroupToUserGroupRole_FXXTUserGroups" FromRole="FxNTUserGroupToUserGroupRole" ToRole="FxNTUserGroups" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="31" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" >
+            <Documentation>
+              <LongDescription>Benutzername</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" >
+            <Documentation>
+              <LongDescription>Anzeigename</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="PasswordHASH" Type="Binary" MaxLength="256" FixedLength="false" >
+            <Documentation>
+              <LongDescription>Kennwort-HASH</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" >
+            <Documentation>
+              <LongDescription>Bemerkung</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="DomainUser" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" >
+            <Documentation>
+              <LongDescription>Domänenbenutzer</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="IsLocked" Type="Boolean" Nullable="false" DefaultValue="False" >
+            <Documentation>
+              <LongDescription>Gesperrt</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="IsNotActive" Type="Boolean" Nullable="false" DefaultValue="False" >
+            <Documentation>
+              <LongDescription>Deaktiviert</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="ChangePassword" Type="Boolean" Nullable="false" DefaultValue="False" >
+            <Documentation>
+              <LongDescription>Kennwort ändern</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="LoginAttempts" Type="Int32" Nullable="false" DefaultValue="0" >
+            <Documentation>
+              <LongDescription>Anmeldeversuche</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="LastLogin" Type="DateTime" Nullable="false" Precision="7" DefaultValue="1900-01-01 00:00:00.000Z" >
+            <Documentation>
+              <LongDescription>Letzte Anmeldung</LongDescription>
+            </Documentation>
+          </Property>
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="UserGroups" Relationship="Self.FK_FXXTUserToUserGroups_FXXTUsers" FromRole="FxNTUsers" ToRole="FxNTUserToUserGroups" />
+        </EntityType>
+        <EntityType Name="UserToUserGroup">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserGUID" Type="Guid" Nullable="false" />
+          <Property Name="UserGroupGUID" Type="Guid" Nullable="false" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="UserGroup" Relationship="Self.FK_FXXTUserToUserGroups_FXXTUserGroups" FromRole="FxNTUserToUserGroups" ToRole="FxNTUserGroups" />
+          <NavigationProperty Name="User" Relationship="Self.FK_FXXTUserToUserGroups_FXXTUsers" FromRole="FxNTUserToUserGroups" ToRole="FxNTUsers" />
+        </EntityType>
+        <Association Name="FK_FXXTUserGroupToUserGroupRole_FXXTUserGroupRoles">
+          <End Role="FxNTUserGroupRoles" Type="FxNTUsersModel.UserGroupRole" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FxNTUserGroupToUserGroupRole" Type="FxNTUsersModel.UserGroupToUserGroupRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTUserGroupRoles">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTUserGroupToUserGroupRole">
+              <PropertyRef Name="RoleGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FXXTUserGroupToUserGroupRole_FXXTUserGroups">
+          <End Role="FxNTUserGroups" Type="FxNTUsersModel.UserGroup" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FxNTUserGroupToUserGroupRole" Type="FxNTUsersModel.UserGroupToUserGroupRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTUserGroups">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTUserGroupToUserGroupRole">
+              <PropertyRef Name="UserGroupGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FXXTUserToUserGroups_FXXTUserGroups">
+          <End Role="FxNTUserGroups" Type="FxNTUsersModel.UserGroup" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FxNTUserToUserGroups" Type="FxNTUsersModel.UserToUserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTUserGroups">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTUserToUserGroups">
+              <PropertyRef Name="UserGroupGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FXXTUserToUserGroups_FXXTUsers">
+          <End Role="FxNTUsers" Type="FxNTUsersModel.User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FxNTUserToUserGroups" Type="FxNTUsersModel.UserToUserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTUsers">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTUserToUserGroups">
+              <PropertyRef Name="UserGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserGroupRoles" EntityType="FxNTUsersModel.UserGroupRole" />
+          <EntitySet Name="UserGroups" EntityType="FxNTUsersModel.UserGroup" />
+          <EntitySet Name="UserGroupToUserGroupRoles" EntityType="FxNTUsersModel.UserGroupToUserGroupRole" />
+          <EntitySet Name="Users" EntityType="FxNTUsersModel.User" />
+          <EntitySet Name="UserToUserGroups" EntityType="FxNTUsersModel.UserToUserGroup" />
+          <AssociationSet Name="FK_FXXTUserGroupToUserGroupRole_FXXTUserGroupRoles" Association="Self.FK_FXXTUserGroupToUserGroupRole_FXXTUserGroupRoles">
+            <End Role="FxNTUserGroupRoles" EntitySet="UserGroupRoles" />
+            <End Role="FxNTUserGroupToUserGroupRole" EntitySet="UserGroupToUserGroupRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FXXTUserGroupToUserGroupRole_FXXTUserGroups" Association="Self.FK_FXXTUserGroupToUserGroupRole_FXXTUserGroups">
+            <End Role="FxNTUserGroups" EntitySet="UserGroups" />
+            <End Role="FxNTUserGroupToUserGroupRole" EntitySet="UserGroupToUserGroupRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FXXTUserToUserGroups_FXXTUserGroups" Association="Self.FK_FXXTUserToUserGroups_FXXTUserGroups">
+            <End Role="FxNTUserGroups" EntitySet="UserGroups" />
+            <End Role="FxNTUserToUserGroups" EntitySet="UserToUserGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FXXTUserToUserGroups_FXXTUsers" Association="Self.FK_FXXTUserToUserGroups_FXXTUsers">
+            <End Role="FxNTUsers" EntitySet="Users" />
+            <End Role="FxNTUserToUserGroups" EntitySet="UserToUserGroups" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FxNTUsersModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="UserGroupRoles">
+            <EntityTypeMapping TypeName="FxNTUsersModel.UserGroupRole">
+              <MappingFragment StoreEntitySet="FxNTUserGroupRoles">
+                <ScalarProperty Name="GUID" ColumnName="UserGroupRoleGUID" />
+                <ScalarProperty Name="Name" ColumnName="UserGroupRoleName" />
+                <ScalarProperty Name="Description" ColumnName="UserGroupRoleDescription" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="FxNTUsersModel.UserGroup">
+              <MappingFragment StoreEntitySet="FxNTUserGroups">
+                <ScalarProperty Name="GUID" ColumnName="UserGroupGUID" />
+                <ScalarProperty Name="Name" ColumnName="UserGroupName" />
+                <ScalarProperty Name="Description" ColumnName="UserGroupDescription" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroupToUserGroupRoles">
+            <EntityTypeMapping TypeName="FxNTUsersModel.UserGroupToUserGroupRole">
+              <MappingFragment StoreEntitySet="FxNTUserGroupToUserGroupRole">
+                <ScalarProperty Name="GUID" ColumnName="EntryGUID" />
+                <ScalarProperty Name="UserGroupGUID" ColumnName="UserGroupGUID" />
+                <ScalarProperty Name="RoleGUID" ColumnName="RoleGUID" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="FxNTUsersModel.User">
+              <MappingFragment StoreEntitySet="FxNTUsers">
+                <ScalarProperty Name="GUID" ColumnName="UserGUID" />
+                <ScalarProperty Name="Name" ColumnName="UserName" />
+                <ScalarProperty Name="DisplayName" ColumnName="UsersDisplayName" />
+                <ScalarProperty Name="PasswordHASH" ColumnName="UserPasswordHASH" />
+                <ScalarProperty Name="Description" ColumnName="UserDescription" />
+                <ScalarProperty Name="DomainUser" ColumnName="DomainUser" />
+                <ScalarProperty Name="IsLocked" ColumnName="UserIsLocked" />
+                <ScalarProperty Name="IsNotActive" ColumnName="UserIsNotActive" />
+                <ScalarProperty Name="ChangePassword" ColumnName="ChangePassword" />
+                <ScalarProperty Name="LoginAttempts" ColumnName="LoginAttempts" />
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserToUserGroups">
+            <EntityTypeMapping TypeName="FxNTUsersModel.UserToUserGroup">
+              <MappingFragment StoreEntitySet="FxNTUserToUserGroups">
+                <ScalarProperty Name="GUID" ColumnName="EntryGUID" />
+                <ScalarProperty Name="UserGUID" ColumnName="UserGUID" />
+                <ScalarProperty Name="UserGroupGUID" ColumnName="UserGroupGUID" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

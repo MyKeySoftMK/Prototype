@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>KMF.WrkFlows.Domain</RootNamespace>
+    <TargetFramework>net6.0-windows</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\90_Framework\MYKEY.FxCore.Common.Application\MYKEY.FxCore.Common.Application.vbproj" />
+    <ProjectReference Include="..\..\90_Framework\MYKEY.FxCore.Common\MYKEY.FxCore.Common.vbproj" />
+    <ProjectReference Include="..\..\90_Framework\MYKEY.FxCore.Desktop.Domain\MYKEY.FxCore.Desktop.Domain.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\..\Dlls\NLog.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

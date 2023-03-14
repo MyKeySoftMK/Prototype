@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FxNTPrintsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FxNTPrint">
+          <Key>
+            <PropertyRef Name="PrintGUID" />
+          </Key>
+          <Property Name="PrintGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PrintName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="JSPrintPath" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IsSystemReport" Type="bit" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTPrintGroups">
+          <Key>
+            <PropertyRef Name="PrintGroupGUID" />
+          </Key>
+          <Property Name="PrintGroupGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PrintGroupName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="TreeFoldername" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="TreeFolderImageClose" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="TreeFolderImageOpen" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="SortId" Type="int" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTPrintInputControls">
+          <Key>
+            <PropertyRef Name="ControlGUID" />
+          </Key>
+          <Property Name="ControlGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ParameterName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="ParameterText" Type="varchar" MaxLength="512" Nullable="false" />
+          <Property Name="ParameterDescription" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="InputControlTypeGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DataValues" Type="text" Nullable="false" />
+          <Property Name="DataQueryStatement" Type="text" Nullable="false" />
+          <Property Name="DataMinValue" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="DataMaxValue" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTPrintToInputControls">
+          <Key>
+            <PropertyRef Name="EntryGUID" />
+          </Key>
+          <Property Name="EntryGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PrintGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SortID" Type="int" Nullable="false" />
+          <Property Name="InputControlGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsRequired" Type="bit" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTPrintToPrintGroups">
+          <Key>
+            <PropertyRef Name="EntryGUID" />
+          </Key>
+          <Property Name="EntryGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PrintGroupGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PrintGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FxNTPrintToInputControls_FxNTPrint">
+          <End Role="FxNTPrint" Type="Self.FxNTPrint" Multiplicity="1" />
+          <End Role="FxNTPrintToInputControls" Type="Self.FxNTPrintToInputControls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTPrint">
+              <PropertyRef Name="PrintGUID" />
+            </Principal>
+            <Dependent Role="FxNTPrintToInputControls">
+              <PropertyRef Name="PrintGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FxNTPrintToInputControls_FxNTPrintInputControls">
+          <End Role="FxNTPrintInputControls" Type="Self.FxNTPrintInputControls" Multiplicity="1" />
+          <End Role="FxNTPrintToInputControls" Type="Self.FxNTPrintToInputControls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTPrintInputControls">
+              <PropertyRef Name="ControlGUID" />
+            </Principal>
+            <Dependent Role="FxNTPrintToInputControls">
+              <PropertyRef Name="InputControlGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FxNTPrintToPrintGroups_FxNTPrint">
+          <End Role="FxNTPrint" Type="Self.FxNTPrint" Multiplicity="1" />
+          <End Role="FxNTPrintToPrintGroups" Type="Self.FxNTPrintToPrintGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTPrint">
+              <PropertyRef Name="PrintGUID" />
+            </Principal>
+            <Dependent Role="FxNTPrintToPrintGroups">
+              <PropertyRef Name="PrintGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FxNTPrintToPrintGroups_FxNTPrintGroups">
+          <End Role="FxNTPrintGroups" Type="Self.FxNTPrintGroups" Multiplicity="1" />
+          <End Role="FxNTPrintToPrintGroups" Type="Self.FxNTPrintToPrintGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTPrintGroups">
+              <PropertyRef Name="PrintGroupGUID" />
+            </Principal>
+            <Dependent Role="FxNTPrintToPrintGroups">
+              <PropertyRef Name="PrintGroupGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FxNTPrintsModelStoreContainer">
+          <EntitySet Name="FxNTPrint" EntityType="Self.FxNTPrint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTPrintGroups" EntityType="Self.FxNTPrintGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTPrintInputControls" EntityType="Self.FxNTPrintInputControls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTPrintToInputControls" EntityType="Self.FxNTPrintToInputControls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTPrintToPrintGroups" EntityType="Self.FxNTPrintToPrintGroups" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FxNTPrintToInputControls_FxNTPrint" Association="Self.FK_FxNTPrintToInputControls_FxNTPrint">
+            <End Role="FxNTPrint" EntitySet="FxNTPrint" />
+            <End Role="FxNTPrintToInputControls" EntitySet="FxNTPrintToInputControls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FxNTPrintToInputControls_FxNTPrintInputControls" Association="Self.FK_FxNTPrintToInputControls_FxNTPrintInputControls">
+            <End Role="FxNTPrintInputControls" EntitySet="FxNTPrintInputControls" />
+            <End Role="FxNTPrintToInputControls" EntitySet="FxNTPrintToInputControls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FxNTPrintToPrintGroups_FxNTPrint" Association="Self.FK_FxNTPrintToPrintGroups_FxNTPrint">
+            <End Role="FxNTPrint" EntitySet="FxNTPrint" />
+            <End Role="FxNTPrintToPrintGroups" EntitySet="FxNTPrintToPrintGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FxNTPrintToPrintGroups_FxNTPrintGroups" Association="Self.FK_FxNTPrintToPrintGroups_FxNTPrintGroups">
+            <End Role="FxNTPrintGroups" EntitySet="FxNTPrintGroups" />
+            <End Role="FxNTPrintToPrintGroups" EntitySet="FxNTPrintToPrintGroups" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FxNTPrintsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Print">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="JSPrintPath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="IsSystemReport" Type="Boolean" Nullable="false" DefaultValue="false" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="PrintGroups" Relationship="Self.FK_FxNTPrintToPrintGroups_FxNTPrint" FromRole="FxNTPrint" ToRole="FxNTPrintToPrintGroups" />
+          <NavigationProperty Name="InputControls" Relationship="FxNTPrintsModel.FK_FxNTPrintToInputControls_FxNTPrint" FromRole="Print" ToRole="FxNTPrintToInputControl" />
+        </EntityType>
+        <EntityType Name="PrintGroup">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="TreeFoldername" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="TreeFolderImageClose" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="TreeFolderImageOpen" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="SortId" Type="Int32" Nullable="false" DefaultValue="0" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Prints" Relationship="Self.FK_FxNTPrintToPrintGroups_FxNTPrintGroups" FromRole="FxNTPrintGroups" ToRole="FxNTPrintToPrintGroups" />
+        </EntityType>
+        <EntityType Name="PrintToPrintGroup">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrintGroupGUID" Type="Guid" Nullable="false" />
+          <Property Name="PrintGUID" Type="Guid" Nullable="false" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Print" Relationship="Self.FK_FxNTPrintToPrintGroups_FxNTPrint" FromRole="FxNTPrintToPrintGroups" ToRole="FxNTPrint" />
+          <NavigationProperty Name="PrintGroup" Relationship="Self.FK_FxNTPrintToPrintGroups_FxNTPrintGroups" FromRole="FxNTPrintToPrintGroups" ToRole="FxNTPrintGroups" />
+        </EntityType>
+        <Association Name="FK_FxNTPrintToPrintGroups_FxNTPrint">
+          <End Role="FxNTPrint" Type="FxNTPrintsModel.Print" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FxNTPrintToPrintGroups" Type="FxNTPrintsModel.PrintToPrintGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTPrint">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTPrintToPrintGroups">
+              <PropertyRef Name="PrintGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FxNTPrintToPrintGroups_FxNTPrintGroups">
+          <End Role="FxNTPrintGroups" Type="FxNTPrintsModel.PrintGroup" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FxNTPrintToPrintGroups" Type="FxNTPrintsModel.PrintToPrintGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTPrintGroups">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTPrintToPrintGroups">
+              <PropertyRef Name="PrintGroupGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Prints" EntityType="FxNTPrintsModel.Print" />
+          <EntitySet Name="PrintGroups" EntityType="FxNTPrintsModel.PrintGroup" />
+          <EntitySet Name="PrintToPrintGroups" EntityType="FxNTPrintsModel.PrintToPrintGroup" />
+          <AssociationSet Name="FK_FxNTPrintToPrintGroups_FxNTPrint" Association="Self.FK_FxNTPrintToPrintGroups_FxNTPrint">
+            <End Role="FxNTPrint" EntitySet="Prints" />
+            <End Role="FxNTPrintToPrintGroups" EntitySet="PrintToPrintGroups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FxNTPrintToPrintGroups_FxNTPrintGroups" Association="Self.FK_FxNTPrintToPrintGroups_FxNTPrintGroups">
+            <End Role="FxNTPrintGroups" EntitySet="PrintGroups" />
+            <End Role="FxNTPrintToPrintGroups" EntitySet="PrintToPrintGroups" />
+          </AssociationSet>
+          <EntitySet Name="InputControls" EntityType="FxNTPrintsModel.InputControl" />
+          <EntitySet Name="PrintToInputControls" EntityType="FxNTPrintsModel.PrintToInputControl" />
+          <AssociationSet Name="FK_FxNTPrintToInputControls_FxNTPrint" Association="FxNTPrintsModel.FK_FxNTPrintToInputControls_FxNTPrint">
+            <End Role="Print" EntitySet="Prints" />
+            <End Role="FxNTPrintToInputControl" EntitySet="PrintToInputControls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FxNTPrintToInputControls_FxNTPrintInputControls" Association="FxNTPrintsModel.FK_FxNTPrintToInputControls_FxNTPrintInputControls">
+            <End Role="FxNTPrintInputControl" EntitySet="InputControls" />
+            <End Role="FxNTPrintToInputControl" EntitySet="PrintToInputControls" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="InputControl">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParameterName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" DefaultValue="" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" DefaultValue="" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" DefaultValue="" />
+          <Property Name="TypeGuid" Type="Guid" Nullable="false" DefaultValue="00000000-0000-0000-0000-00a000000000" />
+          <Property Name="DataValues" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" DefaultValue="" />
+          <Property Name="DataQueryStatement" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" DefaultValue="" />
+          <Property Name="DataMinValue" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" DefaultValue="" />
+          <Property Name="DataMaxValue" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" DefaultValue="" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Prints" Relationship="FxNTPrintsModel.FK_FxNTPrintToInputControls_FxNTPrintInputControls" FromRole="FxNTPrintInputControl" ToRole="FxNTPrintToInputControl" />
+        </EntityType>
+        <EntityType Name="PrintToInputControl">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrintGuid" Type="Guid" Nullable="false" />
+          <Property Name="SortID" Type="Int32" Nullable="false" DefaultValue="1" />
+          <Property Name="InputControlGuid" Type="Guid" Nullable="false" />
+          <Property Name="IsRequired" Type="Boolean" Nullable="false" DefaultValue="false" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Print" Relationship="FxNTPrintsModel.FK_FxNTPrintToInputControls_FxNTPrint" FromRole="FxNTPrintToInputControl" ToRole="Print" />
+          <NavigationProperty Name="InputControl" Relationship="FxNTPrintsModel.FK_FxNTPrintToInputControls_FxNTPrintInputControls" FromRole="FxNTPrintToInputControl" ToRole="FxNTPrintInputControl" />
+        </EntityType>
+        <Association Name="FK_FxNTPrintToInputControls_FxNTPrint">
+          <End Type="FxNTPrintsModel.Print" Role="Print" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FxNTPrintsModel.PrintToInputControl" Role="FxNTPrintToInputControl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Print">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTPrintToInputControl">
+              <PropertyRef Name="PrintGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FxNTPrintToInputControls_FxNTPrintInputControls">
+          <End Type="FxNTPrintsModel.InputControl" Role="FxNTPrintInputControl" Multiplicity="1" />
+          <End Type="FxNTPrintsModel.PrintToInputControl" Role="FxNTPrintToInputControl" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTPrintInputControl">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTPrintToInputControl">
+              <PropertyRef Name="InputControlGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FxNTPrintsModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Prints">
+            <EntityTypeMapping TypeName="FxNTPrintsModel.Print">
+              <MappingFragment StoreEntitySet="FxNTPrint">
+                <ScalarProperty Name="GUID" ColumnName="PrintGUID" />
+                <ScalarProperty Name="Name" ColumnName="PrintName" />
+                <ScalarProperty Name="JSPrintPath" ColumnName="JSPrintPath" />
+                <ScalarProperty Name="IsSystemReport" ColumnName="IsSystemReport" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+                <Condition ColumnName="IsDeleted" Value="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrintGroups">
+            <EntityTypeMapping TypeName="FxNTPrintsModel.PrintGroup">
+              <MappingFragment StoreEntitySet="FxNTPrintGroups">
+                <ScalarProperty Name="GUID" ColumnName="PrintGroupGUID" />
+                <ScalarProperty Name="Name" ColumnName="PrintGroupName" />
+                <ScalarProperty Name="TreeFoldername" ColumnName="TreeFoldername" />
+                <ScalarProperty Name="TreeFolderImageClose" ColumnName="TreeFolderImageClose" />
+                <ScalarProperty Name="TreeFolderImageOpen" ColumnName="TreeFolderImageOpen" />
+                <ScalarProperty Name="SortId" ColumnName="SortId" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+                <Condition ColumnName="IsDeleted" Value="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrintToPrintGroups">
+            <EntityTypeMapping TypeName="FxNTPrintsModel.PrintToPrintGroup">
+              <MappingFragment StoreEntitySet="FxNTPrintToPrintGroups">
+                <ScalarProperty Name="GUID" ColumnName="EntryGUID" />
+                <ScalarProperty Name="PrintGroupGUID" ColumnName="PrintGroupGUID" />
+                <ScalarProperty Name="PrintGUID" ColumnName="PrintGUID" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+                <Condition ColumnName="IsDeleted" Value="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InputControls">
+            <EntityTypeMapping TypeName="FxNTPrintsModel.InputControl">
+              <MappingFragment StoreEntitySet="FxNTPrintInputControls">
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="DataMaxValue" ColumnName="DataMaxValue" />
+                <ScalarProperty Name="DataMinValue" ColumnName="DataMinValue" />
+                <ScalarProperty Name="DataQueryStatement" ColumnName="DataQueryStatement" />
+                <ScalarProperty Name="DataValues" ColumnName="DataValues" />
+                <ScalarProperty Name="TypeGuid" ColumnName="InputControlTypeGuid" />
+                <ScalarProperty Name="Description" ColumnName="ParameterDescription" />
+                <ScalarProperty Name="Text" ColumnName="ParameterText" />
+                <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+                <ScalarProperty Name="GUID" ColumnName="ControlGUID" />
+                <Condition ColumnName="IsDeleted" Value="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrintToInputControls">
+            <EntityTypeMapping TypeName="FxNTPrintsModel.PrintToInputControl">
+              <MappingFragment StoreEntitySet="FxNTPrintToInputControls">
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="IsRequired" ColumnName="IsRequired" />
+                <ScalarProperty Name="InputControlGuid" ColumnName="InputControlGuid" />
+                <ScalarProperty Name="SortID" ColumnName="SortID" />
+                <ScalarProperty Name="PrintGuid" ColumnName="PrintGuid" />
+                <ScalarProperty Name="GUID" ColumnName="EntryGUID" />
+                <Condition ColumnName="IsDeleted" Value="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

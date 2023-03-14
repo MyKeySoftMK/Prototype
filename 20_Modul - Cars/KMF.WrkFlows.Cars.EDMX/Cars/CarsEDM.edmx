@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CarsModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cars">
+          <Key>
+            <PropertyRef Name="CarGUID" />
+          </Key>
+          <Property Name="CarGUID" Type="guid" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CarName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CarTypeNumber" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="CarDecors" Type="varchar" MaxLength="128" />
+          <Property Name="CarSpecial" Type="bit" Nullable="false" />
+          <Property Name="CarModellYear" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CarColorsText" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="Created" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="CreatorGUID" Type="guid" Nullable="false" />
+          <Property Name="LastModified" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="ModifierGUID" Type="guid" Nullable="false" />
+          <Property Name="Deleted" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="DeleterGUID" Type="guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CarsModelStoreContainer">
+          <EntitySet Name="cars" EntityType="Self.cars" Schema="kmwrkflw" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="CarTypeNumber" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="CarDecors" Type="String" MaxLength="128" FixedLength="false" Unicode="false" DefaultValue="" />
+          <Property Name="CarSpecial" Type="Boolean" Nullable="false" DefaultValue="false" />
+          <Property Name="CarModellYear" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="CarColorsText" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="Created" Type="DateTime" Nullable="false" DefaultValue="1900-01-01 00:00:00.000Z" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" DefaultValue="(00000000-0000-0000-0000-000000000000)" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" DefaultValue="1900-01-01 00:00:00.000Z" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" DefaultValue="(00000000-0000-0000-0000-000000000000)" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" DefaultValue="1900-01-01 00:00:00.000Z" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" DefaultValue="(00000000-0000-0000-0000-000000000000)" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" DefaultValue="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" DefaultValue="false" />
+          <Property Name="Rowversion" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cars" EntityType="CarsModel.Car" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CarsModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="CarsModel.Car">
+              <MappingFragment StoreEntitySet="cars">
+                <ScalarProperty Name="GUID" ColumnName="CarGUID" />
+                <ScalarProperty Name="CarName" ColumnName="CarName" />
+                <ScalarProperty Name="CarTypeNumber" ColumnName="CarTypeNumber" />
+                <ScalarProperty Name="CarDecors" ColumnName="CarDecors" />
+                <ScalarProperty Name="CarSpecial" ColumnName="CarSpecial" />
+                <ScalarProperty Name="CarModellYear" ColumnName="CarModellYear" />
+                <ScalarProperty Name="CarColorsText" ColumnName="CarColorsText" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+                <Condition ColumnName="IsDeleted" Value="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

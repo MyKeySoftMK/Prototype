@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FxNTCheckListsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FxNTCheckLists">
+          <Key>
+            <PropertyRef Name="CheckListGUID" />
+          </Key>
+          <Property Name="CheckListGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CheckListName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CheckListDescription" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="CheckListUserGuid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CheckListDueDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTCheckListsSteps">
+          <Key>
+            <PropertyRef Name="StepGUID" />
+          </Key>
+          <Property Name="StepGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CheckListGuid" Type="uniqueidentifier" />
+          <Property Name="StepPosition" Type="int" Nullable="false" />
+          <Property Name="StepName" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="StepDescription" Type="varchar(max)" Nullable="false" />
+          <Property Name="StepAutomationEntryPointAssembly" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="StepAutomationCommand" Type="varchar(max)" Nullable="false" />
+          <Property Name="StepRemark" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="StepDateFinished" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FxNTCheckListsSteps_FxNTCheckLists">
+          <End Role="FxNTCheckLists" Type="Self.FxNTCheckLists" Multiplicity="0..1" />
+          <End Role="FxNTCheckListsSteps" Type="Self.FxNTCheckListsSteps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTCheckLists">
+              <PropertyRef Name="CheckListGUID" />
+            </Principal>
+            <Dependent Role="FxNTCheckListsSteps">
+              <PropertyRef Name="CheckListGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FxNTCheckListsModelStoreContainer">
+          <EntitySet Name="FxNTCheckLists" EntityType="Self.FxNTCheckLists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTCheckListsSteps" EntityType="Self.FxNTCheckListsSteps" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FxNTCheckListsSteps_FxNTCheckLists" Association="Self.FK_FxNTCheckListsSteps_FxNTCheckLists">
+            <End Role="FxNTCheckLists" EntitySet="FxNTCheckLists" />
+            <End Role="FxNTCheckListsSteps" EntitySet="FxNTCheckListsSteps" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FxNTCheckListsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CheckList">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="Description" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="UserGuid" Type="Guid" Nullable="false" DefaultValue="00000000-0000-0000-0000-000000000002" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="7" DefaultValue="1900-01-01 00:00:00.000Z" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Steps" Relationship="Self.FK_FxNTCheckListsSteps_FxNTCheckLists" FromRole="FxNTCheckLists" ToRole="FxNTCheckListsSteps" />
+        </EntityType>
+        <EntityType Name="CheckListsStep">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CheckListGuid" Type="Guid" />
+          <Property Name="Position" Type="Int32" Nullable="false" DefaultValue="1" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="AutomationEntryPointAssembly" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="MYKEY.CongAdminNT.Common.dll" />
+          <Property Name="AutomationCommand" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="Remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="DateFinished" Type="DateTime" Nullable="false" Precision="7" DefaultValue="1900-01-01 00:00:00.000Z" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="CheckList" Relationship="Self.FK_FxNTCheckListsSteps_FxNTCheckLists" FromRole="FxNTCheckListsSteps" ToRole="FxNTCheckLists" />
+        </EntityType>
+        <Association Name="FK_FxNTCheckListsSteps_FxNTCheckLists">
+          <End Role="FxNTCheckLists" Type="FxNTCheckListsModel.CheckList" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FxNTCheckListsSteps" Type="FxNTCheckListsModel.CheckListsStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTCheckLists">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTCheckListsSteps">
+              <PropertyRef Name="CheckListGuid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CheckLists" EntityType="FxNTCheckListsModel.CheckList" />
+          <EntitySet Name="CheckListsSteps" EntityType="FxNTCheckListsModel.CheckListsStep" />
+          <AssociationSet Name="FK_FxNTCheckListsSteps_FxNTCheckLists" Association="Self.FK_FxNTCheckListsSteps_FxNTCheckLists">
+            <End Role="FxNTCheckLists" EntitySet="CheckLists" />
+            <End Role="FxNTCheckListsSteps" EntitySet="CheckListsSteps" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FxNTCheckListsModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="CheckLists">
+            <EntityTypeMapping TypeName="FxNTCheckListsModel.CheckList">
+              <MappingFragment StoreEntitySet="FxNTCheckLists">
+                <ScalarProperty Name="GUID" ColumnName="CheckListGUID" />
+                <ScalarProperty Name="Name" ColumnName="CheckListName" />
+                <ScalarProperty Name="Description" ColumnName="CheckListDescription" />
+                <ScalarProperty Name="UserGuid" ColumnName="CheckListUserGuid" />
+                <ScalarProperty Name="DueDate" ColumnName="CheckListDueDate" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+                <Condition ColumnName="IsDeleted" Value="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckListsSteps">
+            <EntityTypeMapping TypeName="FxNTCheckListsModel.CheckListsStep">
+              <MappingFragment StoreEntitySet="FxNTCheckListsSteps">
+                <ScalarProperty Name="GUID" ColumnName="StepGUID" />
+                <ScalarProperty Name="CheckListGuid" ColumnName="CheckListGuid" />
+                <ScalarProperty Name="Position" ColumnName="StepPosition" />
+                <ScalarProperty Name="Name" ColumnName="StepName" />
+                <ScalarProperty Name="Description" ColumnName="StepDescription" />
+                <ScalarProperty Name="AutomationEntryPointAssembly" ColumnName="StepAutomationEntryPointAssembly" />
+                <ScalarProperty Name="AutomationCommand" ColumnName="StepAutomationCommand" />
+                <ScalarProperty Name="Remark" ColumnName="StepRemark" />
+                <ScalarProperty Name="DateFinished" ColumnName="StepDateFinished" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+                <Condition ColumnName="IsDeleted" Value="false" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

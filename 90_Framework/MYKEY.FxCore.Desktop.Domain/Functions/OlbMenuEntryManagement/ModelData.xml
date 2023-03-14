@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ModelData>
+  <ModelName>OlbMenuEntryManagement</ModelName>
+  <EntityModelDomain>FxNTOlbMenu.FxNTOlbMenuEDM</EntityModelDomain>
+  <EntityModelAssembly>MYKEY.FxCore.DataAccess</EntityModelAssembly>
+  <EntityNamespace>MYKEY.FxCore.DataAccess.FxNTOlbMenu</EntityNamespace>
+  <Entities>FxNTOlbMenu.Entities</Entities>
+  <EntityNameSingle>MenuEntry</EntityNameSingle>
+  <EntityNamePlural>MenuEntries</EntityNamePlural>
+  <EntityNameSingleTranslation>Menueeintrag</EntityNameSingleTranslation>
+  <EntityNamePluralTranslation>Menueeintraege</EntityNamePluralTranslation>
+
+  <CheckUniqueProperty></CheckUniqueProperty>
+
+  <OrderByCount>0</OrderByCount>
+  <OrderBy1Column>FullName</OrderBy1Column>
+  <OrderBy1Sort>A</OrderBy1Sort>
+
+</ModelData>

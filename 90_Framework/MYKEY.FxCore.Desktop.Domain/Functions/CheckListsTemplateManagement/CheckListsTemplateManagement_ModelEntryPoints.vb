@@ -1,0 +1,38 @@
+﻿Imports System.Data.Entity.Infrastructure
+Imports MYKEY.FxCore.Common
+Imports MYKEY.FxCore.DataAccess.FxNTCheckListsTemplates
+Imports MYKEY.FxCore.Desktop.Domain
+
+Partial Public Class CheckListsTemplateManagement
+    Implements ICheckListsTemplateManagement_ModelEntryPoints
+
+    Public Function EntryPoint_AfterAddNewCheckListsTemplate(CheckListsTemplateEntity As CheckListsTemplate) As ServerResult Implements ICheckListsTemplateManagement_ModelEntryPoints.EntryPoint_AfterAddNewCheckListsTemplate
+    End Function
+
+    Public Function EntryPoint_AfterDeleteCheckListsTemplate(CheckListsTemplateEntity As CheckListsTemplate) As ServerResult Implements ICheckListsTemplateManagement_ModelEntryPoints.EntryPoint_AfterDeleteCheckListsTemplate
+    End Function
+
+    Public Function EntryPoint_AfterModifyCheckListsTemplate(CheckListsTemplateEntity As CheckListsTemplate) As ServerResult Implements ICheckListsTemplateManagement_ModelEntryPoints.EntryPoint_AfterModifyCheckListsTemplate
+    End Function
+
+    Public Function EntryPoint_BeforeAddNewCheckListsTemplate(CheckListsTemplateEntity As CheckListsTemplate) As Object Implements ICheckListsTemplateManagement_ModelEntryPoints.EntryPoint_BeforeAddNewCheckListsTemplate
+    End Function
+
+    Public Function EntryPoint_BeforeModifyCheckListsTemplate(CheckListsTemplateEntity As CheckListsTemplate) As ServerResult Implements ICheckListsTemplateManagement_ModelEntryPoints.EntryPoint_BeforeModifyCheckListsTemplate
+    End Function
+
+    Public Function EntryPoint_CheckAddNewCheckListsTemplate(Dbctx As Entities, CheckListsTemplateEntity As CheckListsTemplate) As Boolean Implements ICheckListsTemplateManagement_ModelEntryPoints.EntryPoint_CheckAddNewCheckListsTemplate
+    End Function
+
+    Public Function EntryPoint_CopyCheckListsTemplate(CheckListsTemplateEntityCopy As CheckListsTemplate) As CheckListsTemplate Implements ICheckListsTemplateManagement_ModelEntryPoints.EntryPoint_CopyCheckListsTemplate
+    End Function
+
+    Public Function EntryPoint_DefineDefaultQuery(currentDefaultQuery As DbQuery(Of CheckListsTemplate)) As Object Implements ICheckListsTemplateManagement_ModelEntryPoints.EntryPoint_DefineDefaultQuery
+    End Function
+
+    Public Function EntryPoint_GenerateValidCheckListsTemplateEntity() As CheckListsTemplate Implements ICheckListsTemplateManagement_ModelEntryPoints.EntryPoint_GenerateValidCheckListsTemplateEntity
+    End Function
+
+    Public Function EntryPoint_ModifyEntityBeforeModifyCheckListsTemplate(CheckListsTemplateEntity As CheckListsTemplate) As CheckListsTemplate Implements ICheckListsTemplateManagement_ModelEntryPoints.EntryPoint_ModifyEntityBeforeModifyCheckListsTemplate
+    End Function
+End Class

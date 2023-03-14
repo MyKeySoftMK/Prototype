@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FxNTOlbMenuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FxNTOLBMenuEntries">
+          <Key>
+            <PropertyRef Name="MenuEntryGUID" />
+          </Key>
+          <Property Name="MenuEntryGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MenuGroupGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MenuEntryText" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="MenuEntrySortID" Type="int" Nullable="false" />
+          <Property Name="MenuEntryDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EntryIconName" Type="varchar" MaxLength="127" Nullable="false" />
+          <Property Name="EntryIconBrushName" Type="varchar" MaxLength="127" Nullable="false" />
+          <Property Name="EntryRaiseEvent" Type="varchar" MaxLength="127" Nullable="false" />
+          <Property Name="EntryLoadAssemblyName" Type="varchar" MaxLength="127" Nullable="false" />
+          <Property Name="EntryRunUserControlName" Type="varchar" MaxLength="127" Nullable="false" />
+          <Property Name="EntryLayoutControllerAction" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CountInstancesAllowed" Type="int" Nullable="false" />
+          <Property Name="RefreshingTime" Type="int" Nullable="false" />
+          <Property Name="URLToSupport" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="SystemEntry" Type="bit" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTOLBMenuEntryToUserGroups">
+          <Key>
+            <PropertyRef Name="EntryGUID" />
+          </Key>
+          <Property Name="EntryGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MenuEntryGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserGroupGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FxNTOLBMenuGroups">
+          <Key>
+            <PropertyRef Name="MenuGroupEntryGUID" />
+          </Key>
+          <Property Name="MenuGroupEntryGUID" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MenuGroupName" Type="varchar" MaxLength="127" Nullable="false" />
+          <Property Name="MenuGroupSortID" Type="int" Nullable="false" />
+          <Property Name="MenuGroupDescription" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MenuGroupIconSelected" Type="varchar" MaxLength="127" Nullable="false" />
+          <Property Name="MenuGroupIconUnselected" Type="varchar" MaxLength="127" Nullable="false" />
+          <Property Name="SystemGroup" Type="bit" Nullable="false" />
+          <Property Name="CreatorGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="LastModified" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ModifierGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DeleterGUID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsNotVisible" Type="bit" Nullable="false" />
+          <Property Name="CanNotDelete" Type="bit" Nullable="false" />
+          <Property Name="Rowversion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_FXXTOLBMenuEntries_FXXTOLBMenuGroups">
+          <End Role="FxNTOLBMenuGroups" Type="Self.FxNTOLBMenuGroups" Multiplicity="1" />
+          <End Role="FxNTOLBMenuEntries" Type="Self.FxNTOLBMenuEntries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTOLBMenuGroups">
+              <PropertyRef Name="MenuGroupEntryGUID" />
+            </Principal>
+            <Dependent Role="FxNTOLBMenuEntries">
+              <PropertyRef Name="MenuGroupGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FXXTOLBMenuEntryToUserGroups_FXXTOLBMenuEntries">
+          <End Role="FxNTOLBMenuEntries" Type="Self.FxNTOLBMenuEntries" Multiplicity="1" />
+          <End Role="FxNTOLBMenuEntryToUserGroups" Type="Self.FxNTOLBMenuEntryToUserGroups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTOLBMenuEntries">
+              <PropertyRef Name="MenuEntryGUID" />
+            </Principal>
+            <Dependent Role="FxNTOLBMenuEntryToUserGroups">
+              <PropertyRef Name="MenuEntryGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FxNTOlbMenuModelStoreContainer">
+          <EntitySet Name="FxNTOLBMenuEntries" EntityType="Self.FxNTOLBMenuEntries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTOLBMenuEntryToUserGroups" EntityType="Self.FxNTOLBMenuEntryToUserGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FxNTOLBMenuGroups" EntityType="Self.FxNTOLBMenuGroups" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_FXXTOLBMenuEntries_FXXTOLBMenuGroups" Association="Self.FK_FXXTOLBMenuEntries_FXXTOLBMenuGroups">
+            <End Role="FxNTOLBMenuGroups" EntitySet="FxNTOLBMenuGroups" />
+            <End Role="FxNTOLBMenuEntries" EntitySet="FxNTOLBMenuEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FXXTOLBMenuEntryToUserGroups_FXXTOLBMenuEntries" Association="Self.FK_FXXTOLBMenuEntryToUserGroups_FXXTOLBMenuEntries">
+            <End Role="FxNTOLBMenuEntries" EntitySet="FxNTOLBMenuEntries" />
+            <End Role="FxNTOLBMenuEntryToUserGroups" EntitySet="FxNTOLBMenuEntryToUserGroups" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FxNTOlbMenuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MenuEntry">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" DefaultValue="00000000-0000-0000-0000-000000000000" />
+          <Property Name="MenuGroupGUID" Type="Guid" Nullable="false" DefaultValue="00000000-0000-0000-0000-101000000104" />
+          <Property Name="Text" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="SortID" Type="Int32" Nullable="false" DefaultValue="0" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="IconName" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="RaiseEvent" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="LoadAssemblyName" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="RunUserControlName" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="CountInstancesAllowed" Type="Int32" Nullable="false" DefaultValue="0" />
+          <Property Name="RefreshingTime" Type="Int32" Nullable="false" DefaultValue="0" />
+          <Property Name="URLToSupport" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="SystemEntry" Type="Boolean" Nullable="false" DefaultValue="false" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="MenuGroup" Relationship="Self.FK_FXXTOLBMenuEntries_FXXTOLBMenuGroups" FromRole="FxNTOLBMenuEntries" ToRole="FxNTOLBMenuGroups" />
+          <NavigationProperty Name="MenuEntryToUserGroups" Relationship="Self.FK_FXXTOLBMenuEntryToUserGroups_FXXTOLBMenuEntries" FromRole="FxNTOLBMenuEntries" ToRole="FxNTOLBMenuEntryToUserGroups" />
+          <Property Name="ControllerAction" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" DefaultValue="Function@NotImplementet" />
+          <Property Name="BrushName" Type="String" Nullable="false" MaxLength="127" FixedLength="false" Unicode="false" DefaultValue="CODE.Framework-Icon-Home" />
+        </EntityType>
+        <EntityType Name="MenuEntryToUserGroup">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" DefaultValue="00000000-0000-0000-0000-000000000000" />
+          <Property Name="MenuEntryGUID" Type="Guid" Nullable="false" />
+          <Property Name="UserGroupGUID" Type="Guid" Nullable="false" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="MenuEntry" Relationship="Self.FK_FXXTOLBMenuEntryToUserGroups_FXXTOLBMenuEntries" FromRole="FxNTOLBMenuEntryToUserGroups" ToRole="FxNTOLBMenuEntries" />
+        </EntityType>
+        <EntityType Name="MenuGroup">
+          <Key>
+            <PropertyRef Name="GUID" />
+          </Key>
+          <Property Name="GUID" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" DefaultValue="00000000-0000-0000-0000-000000000000" />
+          <Property Name="Name" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="SortID" Type="Int32" Nullable="false" DefaultValue="0" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="IconSelected" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="IconUnselected" Type="String" MaxLength="127" FixedLength="false" Unicode="false" Nullable="false" DefaultValue="" />
+          <Property Name="SystemGroup" Type="Boolean" Nullable="false" DefaultValue="false" />
+          <Property Name="CreatorGUID" Type="Guid" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="LastModified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ModifierGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Deleted" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DeleterGUID" Type="Guid" Nullable="false" />
+          <Property Name="IsNotVisible" Type="Boolean" Nullable="false" />
+          <Property Name="CanNotDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Rowversion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="MenuEntries" Relationship="Self.FK_FXXTOLBMenuEntries_FXXTOLBMenuGroups" FromRole="FxNTOLBMenuGroups" ToRole="FxNTOLBMenuEntries" />
+        </EntityType>
+        <Association Name="FK_FXXTOLBMenuEntries_FXXTOLBMenuGroups">
+          <End Role="FxNTOLBMenuGroups" Type="FxNTOlbMenuModel.MenuGroup" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FxNTOLBMenuEntries" Type="FxNTOlbMenuModel.MenuEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTOLBMenuGroups">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTOLBMenuEntries">
+              <PropertyRef Name="MenuGroupGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FXXTOLBMenuEntryToUserGroups_FXXTOLBMenuEntries">
+          <End Role="FxNTOLBMenuEntries" Type="FxNTOlbMenuModel.MenuEntry" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="FxNTOLBMenuEntryToUserGroups" Type="FxNTOlbMenuModel.MenuEntryToUserGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FxNTOLBMenuEntries">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="FxNTOLBMenuEntryToUserGroups">
+              <PropertyRef Name="MenuEntryGUID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MenuEntries" EntityType="FxNTOlbMenuModel.MenuEntry" />
+          <EntitySet Name="MenuEntryToUserGroups" EntityType="FxNTOlbMenuModel.MenuEntryToUserGroup" />
+          <EntitySet Name="MenuGroups" EntityType="FxNTOlbMenuModel.MenuGroup" />
+          <AssociationSet Name="FK_FXXTOLBMenuEntries_FXXTOLBMenuGroups" Association="Self.FK_FXXTOLBMenuEntries_FXXTOLBMenuGroups">
+            <End Role="FxNTOLBMenuGroups" EntitySet="MenuGroups" />
+            <End Role="FxNTOLBMenuEntries" EntitySet="MenuEntries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FXXTOLBMenuEntryToUserGroups_FXXTOLBMenuEntries" Association="Self.FK_FXXTOLBMenuEntryToUserGroups_FXXTOLBMenuEntries">
+            <End Role="FxNTOLBMenuEntries" EntitySet="MenuEntries" />
+            <End Role="FxNTOLBMenuEntryToUserGroups" EntitySet="MenuEntryToUserGroups" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FxNTOlbMenuModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="MenuEntries">
+            <EntityTypeMapping TypeName="FxNTOlbMenuModel.MenuEntry">
+              <MappingFragment StoreEntitySet="FxNTOLBMenuEntries">
+                <ScalarProperty Name="BrushName" ColumnName="EntryIconBrushName" />
+                <ScalarProperty Name="ControllerAction" ColumnName="EntryLayoutControllerAction" />
+                <ScalarProperty Name="GUID" ColumnName="MenuEntryGUID" />
+                <ScalarProperty Name="MenuGroupGUID" ColumnName="MenuGroupGUID" />
+                <ScalarProperty Name="Text" ColumnName="MenuEntryText" />
+                <ScalarProperty Name="SortID" ColumnName="MenuEntrySortID" />
+                <ScalarProperty Name="Description" ColumnName="MenuEntryDescription" />
+                <ScalarProperty Name="IconName" ColumnName="EntryIconName" />
+                <ScalarProperty Name="RaiseEvent" ColumnName="EntryRaiseEvent" />
+                <ScalarProperty Name="LoadAssemblyName" ColumnName="EntryLoadAssemblyName" />
+                <ScalarProperty Name="RunUserControlName" ColumnName="EntryRunUserControlName" />
+                <ScalarProperty Name="CountInstancesAllowed" ColumnName="CountInstancesAllowed" />
+                <ScalarProperty Name="RefreshingTime" ColumnName="RefreshingTime" />
+                <ScalarProperty Name="URLToSupport" ColumnName="URLToSupport" />
+                <ScalarProperty Name="SystemEntry" ColumnName="SystemEntry" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuEntryToUserGroups">
+            <EntityTypeMapping TypeName="FxNTOlbMenuModel.MenuEntryToUserGroup">
+              <MappingFragment StoreEntitySet="FxNTOLBMenuEntryToUserGroups">
+                <ScalarProperty Name="GUID" ColumnName="EntryGUID" />
+                <ScalarProperty Name="MenuEntryGUID" ColumnName="MenuEntryGUID" />
+                <ScalarProperty Name="UserGroupGUID" ColumnName="UserGroupGUID" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuGroups">
+            <EntityTypeMapping TypeName="FxNTOlbMenuModel.MenuGroup">
+              <MappingFragment StoreEntitySet="FxNTOLBMenuGroups">
+                <ScalarProperty Name="GUID" ColumnName="MenuGroupEntryGUID" />
+                <ScalarProperty Name="Name" ColumnName="MenuGroupName" />
+                <ScalarProperty Name="SortID" ColumnName="MenuGroupSortID" />
+                <ScalarProperty Name="Description" ColumnName="MenuGroupDescription" />
+                <ScalarProperty Name="IconSelected" ColumnName="MenuGroupIconSelected" />
+                <ScalarProperty Name="IconUnselected" ColumnName="MenuGroupIconUnselected" />
+                <ScalarProperty Name="SystemGroup" ColumnName="SystemGroup" />
+                <ScalarProperty Name="CreatorGUID" ColumnName="CreatorGUID" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="LastModified" ColumnName="LastModified" />
+                <ScalarProperty Name="ModifierGUID" ColumnName="ModifierGUID" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="DeleterGUID" ColumnName="DeleterGUID" />
+                <ScalarProperty Name="IsNotVisible" ColumnName="IsNotVisible" />
+                <ScalarProperty Name="CanNotDelete" ColumnName="CanNotDelete" />
+                <ScalarProperty Name="Rowversion" ColumnName="Rowversion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

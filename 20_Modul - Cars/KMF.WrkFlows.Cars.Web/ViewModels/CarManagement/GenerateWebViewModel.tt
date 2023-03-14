@@ -1,0 +1,432 @@
+﻿<#@ template language="VB" debug="true" hostSpecific="true" #>
+<#@ output extension=".vb" #>
+<#@ Assembly Name="System.Core.dll" #>
+<#@ Assembly Name="System.Xml.dll" #>
+<#@ Assembly Name="System.Xml.Linq.dll" #>
+<#@ Assembly Name="System.Windows.Forms.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+' ###################################################################
+' #  T4-Name	: GenerateWebViewModel.tt                           #
+' #  Date		: 2021-11-18                                        #
+' #  Version	: 1                           (c) MyKey-Soft 2016   #
+' ###################################################################
+Imports System.Collections.ObjectModel
+
+Imports MYKEY.FxCore.Common
+Imports MYKEY.FxCore.Common.Application
+Imports MYKEY.FxCore.Common.ApplicationLogging
+Imports MYKEY.FxCore.Web.Application
+
+Imports <#=GetValue("EntityDomain")#>
+Imports <#=GetValue("EntityNamespace")#>
+
+Partial Class <#=GetValue("ModelName")#>ViewModel
+
+    Inherits WebViewModel
+	Implements I<#=GetValue("ModelName")#>_ViewModelEntryPoints
+
+    Private _<#=GetValue("ModelName")#> As <#=GetValue("ModelName")#>
+
+#Region "Init"
+
+    Public Sub New()
+
+        Try
+
+            NLOGLOGGER.Info("<#=GetValue("ModelName")#>ViewModel will be initalized")
+
+            _<#=GetValue("ModelName")#> = New <#=GetValue("ModelName")#>
+            _<#=GetValue("EntityNamePlural")#> = Get<#=GetValue("EntityNamePlural")#>(EntryPoint_DefineFullQueryParameter)
+
+            NLOGLOGGER.Info("<#=GetValue("ModelName")#>ViewModel is successfull initalized")
+
+        Catch ex As Exception
+            NLOGLOGGER.Fatal("<#=GetValue("ModelName")#>ViewModel cannot initalized")
+            NLOGLOGGER.Fatal(ex.Message)
+            Console.WriteLine(ex.Message)
+        End Try
+
+    End Sub
+
+#End Region
+
+#Region "Events"
+
+#End Region
+
+#Region "Properties"
+
+#Region "Common"
+
+    ''' <summary>
+    ''' Ob das Formular für die Eingabe aktiviert werden soll
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public ReadOnly Property EnableEditForm As Boolean
+        Get
+            If Current<#=GetValue("EntityNameSingle")#> IsNot Nothing Then
+                Return True
+            Else
+                Return False
+            End If
+        End Get
+    End Property
+
+    ''' <summary>
+    ''' Die Sammlung der <#=GetValue("EntityNamePluralTranslation")#>
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property <#=GetValue("EntityNamePlural")#> As ObservableCollection(Of <#=GetValue("EntityNameSingle")#>)
+        Set(value As ObservableCollection(Of <#=GetValue("EntityNameSingle")#>))
+            If value IsNot _<#=GetValue("EntityNamePlural")#> Then
+                _<#=GetValue("EntityNamePlural")#> = value
+                Me.OnPropertyChanged("<#=GetValue("EntityNamePlural")#>")
+            End If
+        End Set
+        Get
+            Return _<#=GetValue("EntityNamePlural")#>
+        End Get
+    End Property
+    Private _<#=GetValue("EntityNamePlural")#> As ObservableCollection(Of <#=GetValue("EntityNameSingle")#>)
+
+    ''' <summary>
+    ''' Die aktuell ausgewählte <#=GetValue("EntityNameSingleTranslation")#> incl. der Änderungen, die ein Benutzer vorgenommen hat,
+    ''' bevor er diese in der Datenbank gespeichert hat
+    ''' </summary>
+    ''' <value></value>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Property Current<#=GetValue("EntityNameSingle")#> As <#=GetValue("EntityNameSingle")#>
+        Set(value As <#=GetValue("EntityNameSingle")#>)
+            If value IsNot _current<#=GetValue("EntityNameSingle")#> Then
+                If value IsNot Nothing Then
+
+                    ' Wenn noch Änderungen an dem Eintrag nicht gespeichert wurden, dann den Benutzer vorher fragen
+                    If _<#=GetValue("ModelName")#>.HasChanges = True Then
+
+                        Dim userSelectYes As Boolean = False
+
+                        ' Sicherheitsabfrage vor dem Löschen des Eintrags
+                        ' <NOCH IMPLEMENTIEREN>
+
+                        If userSelectYes = True Then
+
+                            ' Speichern
+                            Modify<#=GetValue("EntityNameSingle")#>(_current<#=GetValue("EntityNameSingle")#>)
+							'Controller.Notification("Hinweis","Eintrag wurde gespeichert!")
+                        Else
+
+                            ' Verwerfen der Änderungen
+                            _<#=GetValue("ModelName")#>.RejectChanges()
+                            Me.OnPropertyChanged("<#=GetValue("EntityNamePlural")#>")
+							'Controller.Notification("Hinweis","Änderungen wurden verworfen!")
+                        End If
+                    End If
+                    _current<#=GetValue("EntityNameSingle")#> = value
+
+                End If
+                Me.OnPropertyChanged("Current<#=GetValue("EntityNameSingle")#>")
+
+                Me.OnPropertyChanged("EnableEditForm")
+
+            End If
+        End Set
+        Get
+            Return _current<#=GetValue("EntityNameSingle")#>
+        End Get
+    End Property
+    Private _current<#=GetValue("EntityNameSingle")#> As <#=GetValue("EntityNameSingle")#>
+
+    ''' <summary>
+    ''' Beinhaltet die Informationen über eine gewählte <#=GetValue("EntityNameSingleTranslation")#>, wie sie in der Datenabank
+    ''' gespeichert sind
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private _saved<#=GetValue("EntityNameSingle")#> As <#=GetValue("EntityNameSingle")#>
+
+#End Region
+
+#End Region
+
+#Region "Functions"
+
+#Region "Common"
+
+    ''' <summary>
+    ''' Speichert eine neue <#=GetValue("EntityNameSingleTranslation")#> in der Datenbank
+    ''' </summary>
+    ''' <param name="<#=GetValue("EntityNameSingle")#>Entity"></param>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function CreateNew<#=GetValue("EntityNameSingle")#>(<#=GetValue("EntityNameSingle")#>Entity As <#=GetValue("EntityNameSingle")#>) As ServerResult
+
+        Dim _result As ServerResult
+        _result = _<#=GetValue("ModelName")#>.CreateNew<#=GetValue("EntityNameSingle")#>(<#=GetValue("EntityNameSingle")#>Entity)
+        Return _result
+
+    End Function
+
+	Public Function Copy<#=GetValue("EntityNameSingle")#>(<#=GetValue("EntityNameSingle")#>Entity As <#=GetValue("EntityNameSingle")#>) As ServerResult
+
+        Dim _result As ServerResult
+        _result = _<#=GetValue("ModelName")#>.Copy<#=GetValue("EntityNameSingle")#>(<#=GetValue("EntityNameSingle")#>Entity)
+        Return _result
+
+    End Function
+
+
+    Public Function Modify<#=GetValue("EntityNameSingle")#>(<#=GetValue("EntityNameSingle")#>Entity As <#=GetValue("EntityNameSingle")#>) As ServerResult
+
+        Dim _result As ServerResult
+        _result = _<#=GetValue("ModelName")#>.Modify<#=GetValue("EntityNameSingle")#>(<#=GetValue("EntityNameSingle")#>Entity)
+        Return _result
+
+    End Function
+
+    Public Function Delete<#=GetValue("EntityNameSingle")#>(<#=GetValue("EntityNameSingle")#>Guid As String) As ServerResult
+
+        Dim _result As ServerResult
+
+        ' Löschen aus der Datenbank
+        _result = _<#=GetValue("ModelName")#>.Delete<#=GetValue("EntityNameSingle")#>(<#=GetValue("EntityNameSingle")#>Guid, (DatabaseSettings.DATABASE_SOFTDEL = False))
+
+        ' Entfernen aus der Auflistung
+        <#=GetValue("EntityNamePlural")#>.Remove(Current<#=GetValue("EntityNameSingle")#>)
+
+        Return _result
+
+    End Function
+
+#End Region
+
+#End Region
+
+#Region "Queries"
+
+    Public Function Get<#=GetValue("EntityNamePlural")#>(Optional QParam As QueryParameters = Nothing) As ObservableCollection(Of <#=GetValue("EntityNameSingle")#>)
+        Return _<#=GetValue("ModelName")#>.Get<#=GetValue("EntityNamePlural")#>(QParam)
+    End Function
+
+    Public Function Get<#=GetValue("EntityNameSingle")#>(<#=GetValue("EntityNameSingle")#>GUID As String, Optional QParam As QueryParameters = Nothing) As <#=GetValue("EntityNameSingle")#>
+        Return _<#=GetValue("ModelName")#>.Get<#=GetValue("EntityNameSingle")#>(<#=GetValue("EntityNameSingle")#>GUID, QParam)
+    End Function
+
+#End Region
+
+#Region "MVVM"
+
+#Region "Common"
+
+    ''' <summary>
+    ''' Kann der gewählte Eintrag gelöscht werden
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function CanDelete<#=GetValue("EntityNameSingle")#>Command() As Boolean
+        Return Current<#=GetValue("EntityNameSingle")#> IsNot Nothing
+    End Function
+
+    ''' <summary>
+    ''' Löschen des Eintrags mit einer Sicherheitsabfrage
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub ExecuteDelete<#=GetValue("EntityNameSingle")#>Command()
+
+        Dim userSelectYes As Boolean = False
+		Dim entryCopy as <#=GetValue("EntityNameSingle")#>
+
+		' Sicherheitsabfrage vor dem Löschen des Eintrags
+        ' <NOCH IMPLEMENTIEREN>
+        
+		If userSelectYes = True Then
+ 			If Current<#=GetValue("EntityNameSingle")#>.GUID.ToString IsNot Nothing Then
+				entryCopy = Current<#=GetValue("EntityNameSingle")#>
+				If _<#=GetValue("ModelName")#>.Delete<#=GetValue("EntityNameSingle")#>(entryCopy.GUID.ToString).HasErrors = False then
+					'Controller.Message("Der Eintrag mit der Id '" & entryCopy.GUID.ToString & "' wurde erfolgreich gelöscht","Hinweis")
+
+					' Entfernen aus der lokalen Auflistung
+					<#=GetValue("EntityNamePlural")#>.Remove(entryCopy)
+					_current<#=GetValue("EntityNameSingle")#> = Nothing
+					Me.OnPropertyChanged("Current<#=GetValue("EntityNameSingle")#>")
+					'Controller.Notification("Hinweis","Eintrag wurde gelöscht!")
+				Else
+					'Controller.Message("Der Eintrag mit der Id '" & entryCopy.GUID.ToString & "' konnte wegen eines Fehlers nicht gelöscht werden","Fehler",,MessageBoxImages.Error)
+				End If
+			End If
+		End If
+
+    End Sub
+
+    ''' <summary>
+    ''' Der der gewählte Eintrag gepeichert werden
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function CanModify<#=GetValue("EntityNameSingle")#>Command() As Boolean
+        If Current<#=GetValue("EntityNameSingle")#> Is Nothing Then
+            Return False
+        Else
+            Return (_<#=GetValue("ModelName")#>.HasChanges = True)
+        End If
+
+    End Function
+
+    ''' <summary>
+    ''' Speichern des Eintrags in die Datenbank
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub ExecuteModify<#=GetValue("EntityNameSingle")#>Command()
+
+        If Current<#=GetValue("EntityNameSingle")#>.GUID.ToString Is Nothing Then
+            Current<#=GetValue("EntityNameSingle")#> = _<#=GetValue("ModelName")#>.Get<#=GetValue("EntityNameSingle")#>(CreateNew<#=GetValue("EntityNameSingle")#>(Current<#=GetValue("EntityNameSingle")#>).ReturnValue)
+        Else
+            Modify<#=GetValue("EntityNameSingle")#>(Current<#=GetValue("EntityNameSingle")#>)
+        End If
+
+		'Controller.Notification("Hinweis","Eintrag wurde gespeichert!")
+
+    End Sub
+
+	''' <summary>
+    ''' Der der gewählte Eintrag kopiert werden
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function CanCopy<#=GetValue("EntityNameSingle")#>Command() As Boolean
+        If Current<#=GetValue("EntityNameSingle")#> Is Nothing Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
+    ''' <summary>
+    ''' Kopieren des Eintrags 
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub ExecuteCopy<#=GetValue("EntityNameSingle")#>Command()
+
+        If Current<#=GetValue("EntityNameSingle")#>.GUID.ToString IsNot Nothing Then
+            Copy<#=GetValue("EntityNameSingle")#>(Current<#=GetValue("EntityNameSingle")#>)
+        End If
+
+		'Controller.Notification("Hinweis","Eintrag wurde kopiert!")
+
+    End Sub
+
+
+    ''' <summary>
+    ''' Können Änderungen an dem aktuellen Eintrag zurückgenommen werden
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function CanCancel<#=GetValue("EntityNameSingle")#>Command() As Boolean
+        If Current<#=GetValue("EntityNameSingle")#> Is Nothing Then
+            Return False
+        End If
+        Return False
+    End Function
+
+    ''' <summary>
+    ''' Überschreibt die gemachten Änderungen des Eintrags wieder
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub ExecuteCancel<#=GetValue("EntityNameSingle")#>Command()
+        Current<#=GetValue("EntityNameSingle")#> = _saved<#=GetValue("EntityNameSingle")#>
+    End Sub
+
+    ''' <summary>
+    ''' Kann ein neuer Eintrag erstellt werden
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Public Function CanNew<#=GetValue("EntityNameSingle")#>Command() As Boolean
+        If Current<#=GetValue("EntityNameSingle")#> Is Nothing Then
+            Return True
+        End If
+        Return Current<#=GetValue("EntityNameSingle")#>.GUID.ToString IsNot Nothing
+    End Function
+
+    ''' <summary>
+    ''' Erstellen eines neuen Eintrags
+    ''' </summary>
+    ''' <remarks></remarks>
+    Public Sub ExecuteNew<#=GetValue("EntityNameSingle")#>Command()
+
+        Dim _result As ServerResult
+
+        ' Erzeugen eines Eintrags auf dem Server
+        _result = _<#=GetValue("ModelName")#>.CreateNew<#=GetValue("EntityNameSingle")#>
+
+		If _result.HasErrors = False Then
+		    ' Hinzugefügten Eintrag lesen und in die aktuelle Liste einfügen
+			<#=GetValue("EntityNamePlural")#>.Add(_<#=GetValue("ModelName")#>.Get<#=GetValue("EntityNameSingle")#>(_result.ReturnValue.ToString))
+
+			' Auswählen des neuen Eintrags
+			Current<#=GetValue("EntityNameSingle")#> = <#=GetValue("EntityNamePlural")#>.ElementAt(<#=GetValue("EntityNamePlural")#>.Count - 1)
+		Else
+			'Controller.Message(_result.ErrorMessages(0), "Fehler", MessageBoxButtons.OK, MessageBoxImages.Error)
+		End If
+
+    End Sub
+
+#End Region
+
+#End Region
+
+End Class
+
+<#+
+Public Function GetCtlValue(ValueName As String) As String
+	
+	Dim result As String = ""
+
+	Dim doc As New XmlDocument()
+
+	Try
+
+		Dim absolutePath As String = Me.Host.ResolvePath("ControlsViewModelData.xml")
+
+		doc.Load(absolutePath)
+
+		dim node As XmlNode = doc.SelectSingleNode("ControlsViewModel")
+		
+		result= node.SelectSingleNode(ValueName).InnerText
+	
+	Catch
+	
+	End Try
+
+	Return result
+
+End Function
+
+Public Function GetValue(ValueName As String) As String
+	
+	Dim result As String = ""
+
+	Dim doc As New XmlDocument()
+
+	Dim absolutePath As String = Me.Host.ResolvePath("ViewModelData.xml")
+
+	doc.Load(absolutePath)
+
+	dim node As XmlNode = doc.SelectSingleNode("ViewModelData")
+		
+	result= node.SelectSingleNode(ValueName).InnerText
+
+	Return result
+
+End Function
+#>

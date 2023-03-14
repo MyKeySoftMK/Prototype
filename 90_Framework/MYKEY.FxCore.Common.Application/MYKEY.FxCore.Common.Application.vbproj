@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <RootNamespace>MYKEY.FxCore.Common.Application</RootNamespace>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Version>1.0.1214</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
+    <PackageReference Include="NLog" Version="4.7.12" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="My Project\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MYKEY.FxCore.Common\MYKEY.FxCore.Common.vbproj" />
+    <ProjectReference Include="..\MYKEY.FxCore.DataAccess\MYKEY.FxCore.DataAccess.vbproj" />
+  </ItemGroup>
+</Project>

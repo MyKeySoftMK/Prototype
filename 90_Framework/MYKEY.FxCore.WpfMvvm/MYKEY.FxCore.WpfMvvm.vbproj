@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <RootNamespace>MYKEY.FxCore.WpfMvvm</RootNamespace>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Version>1.0.1214</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MYKEY.FxCore.Common.Application\MYKEY.FxCore.Common.Application.vbproj" />
+    <ProjectReference Include="..\MYKEY.FxCore.Common\MYKEY.FxCore.Common.vbproj" />
+  </ItemGroup>
+</Project>

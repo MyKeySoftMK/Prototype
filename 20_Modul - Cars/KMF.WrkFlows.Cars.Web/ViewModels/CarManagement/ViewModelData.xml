@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ViewModelData>
+	<ModelName>CarManagement</ModelName>
+	<EntityNamespace>KMF.WrkFlows.Cars.DataAccess.Cars</EntityNamespace>
+	<EntityDomain>KMF.WrkFlows.Cars.Domain</EntityDomain>
+	<EntityNameSingle>Car</EntityNameSingle>
+	<EntityNamePlural>Cars</EntityNamePlural>
+	<EntityNameSingleTranslation>Fahrzeug</EntityNameSingleTranslation>
+	<EntityNamePluralTranslation>Fahrzeuge</EntityNamePluralTranslation>
+
+	<PrintCount>0</PrintCount>
+	<Print1Entity>User</Print1Entity>
+	<Print1HideActionButton>0</Print1HideActionButton>
+	<Print1Header>Benutzer</Print1Header>
+	<Print1Tooltip>Druckt die Benutzerliste</Print1Tooltip>
+	<Print1Group>f2d695c3-2533-464e-aab4-20327a1d86b7</Print1Group>
+
+	<MailCount>0</MailCount>
+	<Mail1Entity>ServiceReport</Mail1Entity>
+	<Mail1HideActionButton>1</Mail1HideActionButton>
+	<Mail1Header>Monatsbericht</Mail1Header>
+	<Mail1Tooltip>Versendet einen Monatsbericht an die Predigtdienstgruppenaufseher</Mail1Tooltip>
+	<Mail1PrintGroup>00000000-0000-0000-0000-100000100001</Mail1PrintGroup>
+	<Mail1ToGroup>00000000-0000-0000-0000-004000100001</Mail1ToGroup>
+	<Mail1CcGroup></Mail1CcGroup>
+	<Mail1BccGroup></Mail1BccGroup>
+	<Mail1ToParam></Mail1ToParam>
+	<Mail1CcParam></Mail1CcParam>
+	<Mail1BccParam></Mail1BccParam>
+	<Mail1Subject>Monatlicher Versammlungsbericht</Mail1Subject>
+	<Mail1BodyTemplate></Mail1BodyTemplate>
+	<Mail1BodyHtmlTemplate></Mail1BodyHtmlTemplate>
+
+	<AutomationCount>0</AutomationCount>
+	<AutomationHideActionButton>0</AutomationHideActionButton>
+	<AutomationGroup>00000000-0000-0000-0000-013000010001</AutomationGroup>
+
+</ViewModelData>

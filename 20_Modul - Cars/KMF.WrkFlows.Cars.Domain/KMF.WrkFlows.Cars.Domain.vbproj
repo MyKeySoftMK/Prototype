@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>KMF.WrkFlows.Cars.Domain</RootNamespace>
+    <TargetFramework>net6-windows</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="NLog" Version="4.7.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\90_Framework\MYKEY.FxCore.Common.Application\MYKEY.FxCore.Common.Application.vbproj" />
+    <ProjectReference Include="..\..\90_Framework\MYKEY.FxCore.Common\MYKEY.FxCore.Common.vbproj" />
+    <ProjectReference Include="..\..\90_Framework\MYKEY.FxCore.DataAccess\MYKEY.FxCore.DataAccess.vbproj" />
+    <ProjectReference Include="..\..\90_Framework\MYKEY.FxCore.Desktop.Domain\MYKEY.FxCore.Desktop.Domain.vbproj" />
+    <ProjectReference Include="..\KMF.WrkFlows.Cars.DataAccess\KMF.WrkFlows.Cars.DataAccess.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Functions\CarManagement\GenerateCoreModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModel.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\CarManagement\GenerateCoreModelEntryPointsInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelEntryPointsInterface.vb</LastGenOutput>
+    </None>
+    <None Update="Functions\CarManagement\GenerateCoreModelInterface.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GenerateCoreModelInterface.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Functions\CarManagement\GenerateCoreModel.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\CarManagement\GenerateCoreModelEntryPointsInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelEntryPointsInterface.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Functions\CarManagement\GenerateCoreModelInterface.vb">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GenerateCoreModelInterface.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

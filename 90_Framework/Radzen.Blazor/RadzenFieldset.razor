@@ -1,0 +1,61 @@
+﻿@inherits RadzenComponent
+
+@if (Visible)
+{
+    <fieldset @ref="@Element" @attributes="Attributes" class="@GetCssClass()" style="@Style" id="@GetId()">
+        @if(AllowCollapse || !string.IsNullOrEmpty(Text) || !string.IsNullOrEmpty(Icon) || HeaderTemplate != null)
+        {
+        <legend class="rz-fieldset-legend" style="white-space:nowrap">
+
+            @if (AllowCollapse)
+            {
+                <a href="javascript:void(0)" aria-controls="rz-fieldset-0-content" aria-expanded="false" @onclick=@Toggle>
+                @if (collapsed)
+                {
+                    <span class="rz-fieldset-toggler rzi rzi-w rzi-plus"></span>
+                }
+                else
+                {
+                    <span class="rz-fieldset-toggler rzi rzi-w rzi-minus"></span>
+                }
+
+                @if (!string.IsNullOrEmpty(Icon))
+                {
+                    <i class="rzi">@((MarkupString)Icon)</i><span>@Text</span>
+                }
+                else
+                {
+                    <span class="rz-fieldset-legend-text">@Text</span>
+                }
+                @HeaderTemplate
+                </a>
+            } 
+            else
+            {
+                @if (!string.IsNullOrEmpty(Icon))
+                {
+                    <i class="rzi">@((MarkupString)Icon)</i><span>@Text</span>
+                }
+                else
+                {
+                    <span class="rz-fieldset-legend-text">@Text</span>
+                }
+                @HeaderTemplate
+            }
+        </legend>
+        }
+        <div class="rz-fieldset-content-wrapper" role="region" id="rz-fieldset-0-content" aria-hidden="false" style="@contentStyle">
+            <div class="rz-fieldset-content">
+                @ChildContent
+            </div>
+        </div>
+        @if (SummaryTemplate != null)
+        {
+            <div class="rz-fieldset-content-wrapper" role="region" aria-hidden="false" style="@summaryContentStyle">
+                <div class="rz-fieldset-content rz-fieldset-content-summary">
+                    @SummaryTemplate
+                </div>
+            </div>
+        }
+    </fieldset>
+}

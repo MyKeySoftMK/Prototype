@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VxFormGenerator.Settings.Bootstrap;
+
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace WrkFlows
 {
@@ -24,12 +32,17 @@ namespace WrkFlows
         public MainWindow()
         {
 
-            var services1 = new ServiceCollection();
-            services1.AddWpfBlazorWebView();
-            services1.AddBlazorWebViewDeveloperTools();
-            var serviceProvider = services1.BuildServiceProvider();
-            Resources.Add("services1", serviceProvider);
+            var services = new ServiceCollection();
+            services.AddWpfBlazorWebView();
+            services.AddBlazorWebView();
+            services.AddBlazorWebViewDeveloperTools();
 
+            //FxCore
+            services.AddVxFormGenerator();
+                                 
+            var serviceProvider = services.BuildServiceProvider();
+            Resources.Add("services", serviceProvider);
+     
             InitializeComponent();
 
         }

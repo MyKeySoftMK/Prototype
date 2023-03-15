@@ -13,6 +13,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\10_Anwendung-Blazor\KMF.WrkFlows.Razor\KMF.WrkFlows.Razor.csproj" />
+    <ProjectReference Include="..\..\90_Framework\Radzen.Blazor\Radzen.Blazor.csproj" />
+    <ProjectReference Include="..\..\90_Framework\VxFormGenerator.Components.Bootstrap\VxFormGenerator.Components.Bootstrap.csproj" />
+    <ProjectReference Include="..\..\90_Framework\VxFormGenerator.Components.Plain\VxFormGenerator.Components.Plain.csproj" />
+    <ProjectReference Include="..\..\90_Framework\VxFormGenerator.Core\VxFormGenerator.Core.csproj" />
   </ItemGroup>
 
 </Project>

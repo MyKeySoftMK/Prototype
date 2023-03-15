@@ -10,9 +10,10 @@ namespace KMF.WrkFlows.Cars.Razor
 {
     class Registration : IModule
     {
-        public string Name => "Cars";
+        public string Name => "Fahrzeuge";
         public List<NavItem> NavItems => new List<NavItem> {
-            new NavItem { Name = "Fahrzeuge", Url = "/carmanagement/init" }
+            new NavItem { Name = "Verwalten", Url = "/carmanagement/init" },
+            new NavItem { Name = "Suchen", Url = "/carmanagement/init" }
         };
     }
 }

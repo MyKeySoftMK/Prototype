@@ -1,0 +1,41 @@
+@using System.Text
+@using Radzen.Blazor
+@using Radzen.Blazor.Rendering
+@typeparam TItem
+@inherits Radzen.Blazor.CartesianSeries<TItem>
+<CascadingValue Value="@this">
+  @ChildContent
+</CascadingValue>
+@code {
+  public override RenderFragment Render(ScaleBase categoryScale, ScaleBase valueScale)
+  {
+    var category = ComposeCategory(categoryScale);
+
+    var value = ComposeValue(valueScale);
+
+    var pathGenerator = GetPathGenerator();
+
+    var data = Items.Select(item =>
+    {
+      var x = category(item);
+      var y = value(item);
+
+      return new Point { X = x, Y = y };
+    }).ToList();
+
+    var style = $"clip-path: url(#{Chart.ClipPath}); -webkit-clip-path: url(#{Chart.ClipPath});";
+    var index = Chart.Series.IndexOf(this);
+    var className = $"rz-line-series rz-series-{index}";
+
+    return
+    @<g class="@className">
+      @if (Items.Any())
+      {
+        var path = $"M {pathGenerator.Path(data)}";
+        var key = $"{path}-{LineType}";
+        <Path @key=@key Style="@style" D="@path" StrokeWidth="@StrokeWidth" Stroke="@Stroke" LineType="@LineType" Fill="none" />
+      }
+      <Markers Series="@this" Data="@Items" Category="@category" Value="@value" MarkerType="@MarkerType" Stroke="@Markers.Stroke" Fill="@(Markers.Fill ?? Stroke)" StrokeWidth="@Markers.StrokeWidth" Size="@Markers.Size" />
+    </g>;
+  }
+}

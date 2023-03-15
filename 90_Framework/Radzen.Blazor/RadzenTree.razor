@@ -1,0 +1,21 @@
+@inherits RadzenComponent
+@using Microsoft.AspNetCore.Components.Rendering;
+@using System.Collections
+@using System.Linq
+
+@if (Visible)
+{
+    <div @ref="@Element" @attributes="Attributes" class="@GetCssClass()" style="@Style" id="@GetId()">
+    <ul class="rz-tree-container">
+        <CascadingValue Value=this>
+            @ChildContent
+        </CascadingValue>
+        @if (Data != null && Levels.Any())
+            {
+                <CascadingValue Value=this>
+                    @RenderChildren(Data, 0)
+                </CascadingValue>
+            }
+        </ul>
+    </div>
+}

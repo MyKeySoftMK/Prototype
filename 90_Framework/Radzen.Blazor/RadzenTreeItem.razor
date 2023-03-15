@@ -1,0 +1,30 @@
+@using Radzen
+@using Radzen.Blazor.Rendering
+@implements IDisposable
+<li class="rz-treenode" @attributes="Attributes">
+    <div class=@ContentClassList @onclick="@Select">
+        @if (ChildContent != null || HasChildren)
+        {
+            <span class=@IconClassList @onclick="@Toggle" @onclick:stopPropagation></span>
+        }
+        @if(Tree != null && Tree.AllowCheckBoxes)
+        {
+            <RadzenCheckBox TValue="bool?" Value="@IsChecked()" Change="@CheckedChange" />
+        }
+        @if (Template != null)
+        {
+            <div class="rz-treenode-label">@Template(this)</div>
+        } else
+        {
+            <span class="rz-treenode-label">@Text</span>
+        }
+    </div>
+    @if (ChildContent != null && expanded)
+    {
+    <CascadingValue Value=this>
+    <ul class="rz-treenode-children" style=@(clientExpanded ? "" : "display:none;")>
+        @ChildContent
+    </ul>
+    </CascadingValue>
+    }
+</li>

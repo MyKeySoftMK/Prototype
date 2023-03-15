@@ -58,6 +58,9 @@ namespace KMF.WrkFlows.Razor
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
-        }
+
+       }
+
+       
     }
 }

@@ -1,0 +1,32 @@
+@using Radzen
+@using System.Globalization;
+@using System.Linq.Dynamic.Core;
+@using Microsoft.JSInterop
+@inherits RadzenComponent
+
+@typeparam TItem
+@implements IScheduler
+
+@if (Visible)
+{
+<CascadingValue Value="@this">
+    @ChildContent
+</CascadingValue>
+<div @ref=Element  style=@Style @attributes=@Attributes class=@GetCssClass() id=@GetId()>
+    <div class="rz-scheduler-nav">
+        <div class="rz-scheduler-nav-prev-next">
+            <button class="rz-button rz-prev" @onclick=@OnPrev><RadzenIcon Icon="chevron_left" /></button>
+            <button class="rz-button rz-next" @onclick=@OnNext><RadzenIcon Icon="chevron_right" /></button>
+            <button class="rz-button rz-today" @onclick=@OnToday>@TodayText</button>
+        </div>
+        <div class="rz-scheduler-nav-title">@SelectedView?.Title</div>
+        <div class="rz-scheduler-nav-views">
+        @foreach (var view in Views)
+        {
+            <RadzenButton Click=@(args => OnChangeView(view)) Icon=@view.Icon Text=@view.Text class="@($"{(IsSelected(view)? " rz-state-active" : "")}")" />
+        }
+        </div>
+    </div>
+    @SelectedView?.Render()
+</div>
+}

@@ -1,0 +1,40 @@
+﻿@using System.Linq
+@using System.Collections
+@using Radzen
+@using Radzen.Blazor.Rendering
+@using Microsoft.AspNetCore.Components.Forms
+@typeparam TValue
+@inherits FormComponent<IEnumerable<TValue>>
+
+@if (Items != null)
+{
+    <CascadingValue Value=this>
+        @Items
+    </CascadingValue>
+}
+@if (Visible)
+{
+    <div @ref="@Element" style="@Style" @attributes="Attributes" class="@GetCssClass()" id="@GetId()">
+        @if (AllowSelectAll)
+        {
+            <div class="rz-multiselect-header rz-helper-clearfix" @onclick:preventDefault>
+                <RadzenCheckBox Name="SelectAll" TValue="bool?" Value="@IsAllSelected()" Change="@SelectAll" />
+                <RadzenLabel Component="SelectAll" Text="@SelectAllText" class="rz-chkbox-label" />
+            </div>
+        }
+        @foreach (var item in allItems.Where(i => i.Visible))
+        {
+            <div @ref="@item.Element" id="@item.GetItemId()" @onclick="@(args => SelectItem(item))" @attributes="item.Attributes" class="@item.GetItemCssClass()" style="@item.Style">
+                <div class="rz-chkbox " @onkeypress="@(async args => { if (args.Code == "Space") { await SelectItem(item); } })" tabindex="@(Disabled || item.Disabled ? "-1" : $"{TabIndex}")">
+                    <div class="rz-helper-hidden-accessible">
+                        <input type="checkbox" name="@Name" value="@item.Value" disabled="@Disabled" tabindex="-1">
+                    </div>
+                    <div class=@ItemClassList(item)>
+                        <span class=@IconClassList(item)></span>
+                    </div>
+                </div>
+                <label class="rz-chkbox-label">@item.Text</label>
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,44 @@
+$sidebar-z: 1 !default;
+$sidebar-width: 250px !default;
+$sidebar-border-right: var(--rz-border-normal) !default;
+$sidebar-background-color: var(--rz-base-800) !default;
+
+// Sidebar CSS variables
+
+:root {
+  --rz-sidebar-z: #{$sidebar-z};
+  --rz-sidebar-width: #{$sidebar-width};
+  --rz-sidebar-border-right: #{$sidebar-border-right};
+  --rz-sidebar-background-color: #{$sidebar-background-color};
+}
+
+.rz-sidebar {
+  background-color: var(--rz-sidebar-background-color);
+  border-right: var(--rz-sidebar-border-right);
+  position: fixed;
+  overflow: auto;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: var(--rz-sidebar-z);
+  width: var(--rz-sidebar-width);
+  opacity: 1;
+  transition: var(--rz-transition-all);
+}
+
+@media (max-width: 768px) { 
+  .rz-sidebar-responsive {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+.rz-sidebar-expanded {
+  width: var(--rz-sidebar-width);
+  opacity: 1;
+}
+
+.rz-sidebar-collapsed {
+  width: 0 !important;
+  opacity: 0;
+}

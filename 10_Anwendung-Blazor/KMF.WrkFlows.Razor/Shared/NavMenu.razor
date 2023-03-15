@@ -16,6 +16,7 @@
             </NavLink>
         </li>
 
+        <!-- Dynamic Menu -->
         @foreach (var item in navItems)
         {
             <li class="nav-item px-3">
@@ -24,12 +25,33 @@
                 </NavLink>
             </li>
         }
+   
 
+        <RadzenPanelMenu>
+            <ChildContent>
+                @foreach (var item in navLists)
+                {            
+                    <RadzenPanelMenuItem Text="@item.Modulname">
+                        <ChildContent>
+                            @foreach (var subitem in item.MenuList)
+                            {
+                                <RadzenPanelMenuItem Text="@subitem.Name" Path="@subitem.Url"/>
+                            }
+                        </ChildContent>
+                    </RadzenPanelMenuItem>
+                }
+            </ChildContent>
+        </RadzenPanelMenu>
+
+
+
+        <!-- Settings-Menue -->
          <li class="nav-item px-3">
             <NavLink class="nav-link" href="/settings" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Einstellungen
             </NavLink>
         </li>
+
         <!-- Only for demo purposes -->
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="/counter" Match="NavLinkMatch.All">
@@ -44,20 +66,29 @@
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
+    // Default Menu
     List<NavItem> navItems = new List<NavItem>();
+
+    // Radzen Menu
+    List<NavListItem> navLists = new List<NavListItem>();
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
 
-     protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
 
         var modules = AssemblyScanning.GetInstances<IModule>();
 
         foreach (var item in modules)
         {
+            NavListItem _modulData = new NavListItem();
+            _modulData.Modulname = item.Name;
+            _modulData.MenuList.AddRange(item.NavItems);
+            navLists.Add(_modulData);
+
             navItems.AddRange(item.NavItems);
         }
     }

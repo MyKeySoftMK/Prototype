@@ -1,0 +1,46 @@
+﻿@using Microsoft.JSInterop
+
+@inherits RadzenComponentWithChildren
+@if (Visible)
+{
+    <div @ref="@Element" style="@Style" @attributes="Attributes" class="@GetCssClass()" id="@GetId()">
+        <button disabled="@IsDisabled" class="@getButtonCss()" type="button" @onclick="@OnClick">
+            @if (IsBusy)
+            {
+                <RadzenIcon Icon="refresh" Style="animation: rotation 700ms linear infinite" />
+                @if (!string.IsNullOrEmpty(BusyText))
+                {
+                    <span class="rz-button-text">@BusyText</span>
+                }
+            }
+            else
+            {
+                @if (!string.IsNullOrEmpty(@Icon))
+                {
+                    <i class="rz-button-icon-left rzi">@((MarkupString)Icon)</i>
+                }
+                @if (!string.IsNullOrEmpty(Image))
+                {
+                    <img class="rz-button-icon-left rzi" src="@Image" />
+                }
+                @if (!string.IsNullOrEmpty(Text))
+                {
+                    <span class="rz-button-text">@Text</span>
+                }
+                else
+                {
+                    <span class="rz-button-text">&nbsp;</span>
+                }
+            }
+        </button><button disabled="@IsDisabled" onclick="@OpenPopupScript()" class="@getPopupButtonCss()" type="button">
+            <span aria-hidden="true" class="rz-button-icon-left rzi rzi-chevron-down"></span><span class="rz-button-text"></span>
+        </button>
+        <div id="@PopupID" class="rz-splitbutton-menu">
+            <ul class="rz-menu-list">
+                <CascadingValue Value=this>
+                    @ChildContent
+                </CascadingValue>
+            </ul>
+        </div>
+    </div>
+}

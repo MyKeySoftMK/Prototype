@@ -1,0 +1,161 @@
+﻿@implements IDisposable
+@using Microsoft.JSInterop
+@inject IJSRuntime JSRuntime
+
+@foreach (var tooltip in tooltips)
+{
+    <div id="@UniqueID" class="rz-tooltip @tooltip.Options.CssClass" style="display: none; top: 0px; left: 0px; z-index: 1001; position: absolute;">
+        <div class="rz-tooltip-content @getCssClass(tooltip)" style="@tooltip.Options.Style">
+            @if (!string.IsNullOrEmpty(tooltip.Options.Text))
+            {
+                <div>
+                    @((MarkupString)tooltip.Options.Text)
+                </div>
+            }
+            else if (tooltip.Options.ChildContent != null)
+            {
+                @tooltip.Options.ChildContent(Service)
+            }
+        </div>
+    </div>
+}
+
+@code {
+    string getCssClass(Tooltip tooltip)
+    {
+        return $"rz-{Enum.GetName(typeof(TooltipPosition), tooltip.Options.Position).ToLowerInvariant()}-tooltip-content";
+    }
+
+    public string UniqueID { get; set; }
+
+    [Inject] private TooltipService Service { get; set; }
+
+    List<Tooltip> tooltips = new List<Tooltip>();
+
+    public async Task Open(ElementReference element, Type type, TooltipOptions options)
+    {
+        tooltips.Clear();
+        tooltips.Add(new Tooltip() { Type = type, Options = options, Element = element });
+
+        await InvokeAsync(() => { StateHasChanged(); });
+
+        var tooltip = tooltips.LastOrDefault();
+
+        if (tooltip != null)
+        {
+            await JSRuntime.InvokeVoidAsync("Radzen.openTooltip",
+                tooltip.Element,
+                UniqueID,
+                tooltip.Options.Delay,
+                tooltip.Options.Duration,
+                Enum.GetName(typeof(TooltipPosition), tooltip.Options.Position).ToLowerInvariant(),
+                tooltip.Options.CloseTooltipOnDocumentClick);
+        }
+    }
+
+    bool IsJSRuntimeAvailable { get; set; }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        IsJSRuntimeAvailable = true;
+
+        var tooltip = tooltips.LastOrDefault();
+
+        if (tooltip != null)
+        {
+            await JSRuntime.InvokeVoidAsync("Radzen.openTooltip",
+                tooltip.Element,
+                UniqueID,
+                tooltip.Options.Delay,
+                tooltip.Options.Duration,
+                Enum.GetName(typeof(TooltipPosition), tooltip.Options.Position).ToLowerInvariant(),
+                tooltip.Options.CloseTooltipOnDocumentClick,
+                Reference,
+                "RadzenTooltip.CloseTooltip");
+        }
+    }
+
+    private DotNetObjectReference<RadzenTooltip> reference;
+
+    /// <summary>
+    /// Gets the reference for the current component.
+    /// </summary>
+    /// <value>The reference.</value>
+    protected DotNetObjectReference<RadzenTooltip> Reference
+    {
+        get
+        {
+            if (reference == null)
+            {
+                reference = DotNetObjectReference.Create(this);
+            }
+
+            return reference;
+        }
+    }
+
+    /// <summary>
+    /// Closes this instance.
+    /// </summary>
+    [JSInvokable("RadzenTooltip.CloseTooltip")]
+    public void CloseTooltip()
+    {
+        Service.Close();
+    }
+
+    public async Task Close()
+    {
+        var lastTooltip = tooltips.LastOrDefault();
+        if (lastTooltip != null)
+        {
+            tooltips.Remove(lastTooltip);
+            await JSRuntime.InvokeVoidAsync("Radzen.closePopup", UniqueID);
+        }
+
+        await InvokeAsync(() => { StateHasChanged(); });
+    }
+
+    public void Dispose()
+    {
+        reference?.Dispose();
+        reference = null;
+
+        if (IsJSRuntimeAvailable)
+        {
+            try
+            {
+               JSRuntime.InvokeVoidAsync("Radzen.destroyPopup", UniqueID);
+            }
+            catch
+            {}
+        }
+
+        Service.OnOpen -= OnOpen;
+        Service.OnClose -= OnClose;
+        Service.OnNavigate -= OnNavigate;
+    }
+
+    protected override void OnInitialized()
+    {
+        UniqueID = Convert.ToBase64String(Guid.NewGuid().ToByteArray()).Replace("/", "-").Replace("+", "-").Substring(0, 10);
+
+        Service.OnOpen += OnOpen;
+        Service.OnClose += OnClose;
+        Service.OnNavigate += OnNavigate;
+    }
+
+    void OnOpen(ElementReference element, Type type, TooltipOptions options)
+    {
+        Open(element, type, options).ConfigureAwait(false);
+    }
+
+    void OnClose()
+    {
+        Close().ConfigureAwait(false);
+    }
+
+    void OnNavigate()
+    {
+        JSRuntime.InvokeVoidAsync("Radzen.closePopup", UniqueID);
+    }
+}

@@ -1,0 +1,25 @@
+﻿@using Radzen
+@using System.Collections
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.JSInterop
+@using System.Linq.Dynamic.Core;
+@using Radzen.Blazor.Rendering;
+ 
+@typeparam TValue
+@inherits FormComponent<TValue>
+@if (Visible)
+{
+    <div @ref="Element" style="@Style" @attributes="Attributes" class="@GetCssClass()" id="@GetId()">
+        @if (Range)
+        {
+            <span class="rz-slider-range" style="left: @(Left.ToInvariantString())%; width: @((SecondLeft - Left).ToInvariantString())%;"></span>
+            <span @ref="minHandle" class="rz-slider-handle" style="left: @(Left.ToInvariantString())%; bottom: auto;"></span>
+            <span @ref="maxHandle"class="rz-slider-handle rz-slider-handle-active" style="left: @(SecondLeft.ToInvariantString())%; bottom: auto;"></span>
+        }
+        else
+        {
+            <span class="rz-slider-range rz-slider-range-min" style="width: @(Left.ToInvariantString())%;"></span>
+            <span @ref="handle" class="rz-slider-handle" style="left: @(Left.ToInvariantString())%;"></span>
+        }
+    </div>
+}

@@ -1,0 +1,11 @@
+﻿@inherits RadzenComponentWithChildren
+@inject NavigationManager UriHelper
+
+@if (Visible)
+{
+    <ul @ref="@Element" style="@Style" @attributes="Attributes" class="@GetCssClass()" id="@GetId()">
+        <CascadingValue Value=this>
+            @ChildContent
+        </CascadingValue>
+    </ul>
+}

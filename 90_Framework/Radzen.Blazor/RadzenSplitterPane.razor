@@ -1,0 +1,40 @@
+﻿@using System.Diagnostics
+@inherits RadzenComponent
+
+
+@if (Visible)
+{
+    <div id="@GetId()" @attributes="Attributes" class="@GetComponentCssClass()" style="flex-basis: @Size; @Style" data-index="@Index">
+        @ChildContent
+    </div>
+
+
+    @if (!IsLast)
+    {
+        <div class="@GetComponentBarCssClass()"
+             @onclick:preventDefault="true"
+             @onclick:stopPropagation="true"
+             @onmousedown=@(args => Splitter.ResizeExec(args, Index))>
+
+            @if (IsCollapsible)
+            {
+                <span class="rz-collapse" @onmousedown:preventDefault="true" @onmousedown:stopPropagation="true" @onmousedown=@(args => Splitter.CollapseExec(args, Index, UniqueID))>
+                </span>
+            }
+
+            @if (IsResizable)
+            {
+                <span class="rz-resize">
+                </span>
+            }
+
+            @if (IsExpandable)
+            {
+                <span class="rz-expand" @onmousedown:preventDefault="true" @onmousedown:stopPropagation="true" @onmousedown=@(args => Splitter.ExpandExec(args, Index, UniqueID))>
+                </span>
+            }
+
+
+        </div>
+    }
+}

@@ -1,0 +1,76 @@
+$icon-styles: () !default;
+$icon-styles: map-merge(
+  (
+    primary: (
+      color: var(--rz-primary)
+    ),
+    light: (
+      color: var(--rz-base-200)
+    ),
+    dark: (
+      color: var(--rz-base-900)
+    ),
+    secondary: (
+      color: var(--rz-secondary)
+    ),
+    info: (
+      color: var(--rz-info)
+    ),
+    warning: (
+      color: var(--rz-warning)
+    ),
+    error: (
+      color: var(--rz-danger)
+    ),
+    danger: (
+      color: var(--rz-danger)
+    ),
+    success: (
+      color: var(--rz-success)
+    )
+  ),
+  $icon-styles
+);
+
+.rzi {
+  font-family: var(--rz-icon-font-family);
+  font-weight: normal;
+  font-style: normal;
+  font-size: var(--rz-icon-size);
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+i.rzi {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@each $style, $icon in $icon-styles {
+    .rzi-#{$style} {
+        @each $name, $value in $icon {
+            #{$name}: #{$value};
+        }
+    }
+}

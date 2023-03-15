@@ -1,0 +1,42 @@
+﻿@using Radzen
+@using Microsoft.JSInterop
+@inherits RadzenComponent
+<CascadingValue Value=@this>
+    @ChildContent
+</CascadingValue>
+@if (Visible)
+{
+<div @ref="@Element" style="@Style" @attributes="Attributes" class="@GetCssClass()" id="@GetId()">
+    <div class="rz-fileupload-buttonbar">
+        <span class="@ChooseClassList">
+            <input id="@Id" @ref="@fileUpload" type="file" multiple="@Multiple" accept="@Accept" disabled="@Disabled" 
+                   onchange="Radzen.uploadInputChange(event, '@Url', @Auto.ToString().ToLower(), @Multiple.ToString().ToLower(), true, '@ParameterName')" />
+            @if (!string.IsNullOrEmpty(Icon))
+            {
+            <i class="rzi">@((MarkupString)Icon)</i>
+            }
+            <span class="rz-button-text">@ChooseText</span>
+        </span>
+    </div>
+    @if (files.Any())
+    {
+    <div class="rz-fileupload-content">
+        <div class="rz-fileupload-files">
+            <div>
+                @foreach (var file in files)
+                {
+                <div class="rz-fileupload-row" style="margin-bottom: 10px">
+                    <div><img src="@file.Url" width="50px" onerror="this.style.display='none';"></div>
+                    <div>@file.Name</div>
+                    <div>@(file.Size / 1024) KB</div>
+                    <div>
+                        <button disabled="@Disabled" @onclick="@(args => OnRemove(file))" type="button" class="@ButtonClassList"><span class="rz-icon-trash" style="display:block"></span></button>
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    }
+</div>
+}

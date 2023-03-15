@@ -1,0 +1,11 @@
+﻿@using Radzen
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.JSInterop
+@using System.Linq.Dynamic.Core;
+@inherits FormComponent<string>
+@if (Visible)
+{
+    <input @ref="@Element" disabled="@Disabled" readonly="@ReadOnly" name="@Name" style="@Style" @attributes="Attributes" class="@GetCssClass()" tabindex="@(Disabled ? "-1" : $"{TabIndex}")"
+           placeholder="@Placeholder" maxlength="@MaxLength" autocomplete="@AutoCompleteAttribute" value="@Value" @onchange="@OnChange" id="@GetId()"
+           oninput="Radzen.mask('@GetId()', '@Mask', '@Pattern', '@CharacterPattern')"/>
+}

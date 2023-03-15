@@ -1,0 +1,93 @@
+$rating-color: var(--rz-secondary) !default;
+$rating-opacity: 0.5 !default;
+$rating-font-size: var(--rz-icon-size) !default;
+$rating-selected-color: var(--rz-primary) !default;
+$rating-disabled-color: var(--rz-text-disabled-color) !default;
+$rating-disabled-opacity: 0.3 !default;
+$rating-ban-icon: "highlight_off" !default;
+$rating-ban-icon-color: $rating-color !default;
+
+// Rating CSS variables
+
+:root {
+  --rz-rating-color: #{$rating-color};
+  --rz-rating-opacity: #{$rating-opacity};
+  --rz-rating-font-size: #{$rating-font-size};
+  --rz-rating-selected-color: #{$rating-selected-color};
+  --rz-rating-disabled-color: #{$rating-disabled-color};
+  --rz-rating-disabled-opacity: #{$rating-disabled-opacity};
+  --rz-rating-ban-icon: #{$rating-ban-icon};
+  --rz-rating-ban-icon-color: #{$rating-ban-icon-color};
+}
+
+.rz-rating {
+  display: inline-flex;
+  font-size: var(--rz-rating-font-size);
+  height: 1em;
+
+  &.rz-state-disabled {
+    .rzi {
+      opacity: var(--rz-rating-disabled-opacity);
+      color: var(--rz-rating-disabled-color);
+    }
+  }
+
+  a {
+    width: 1em;
+    height: 1em;
+    text-decoration: none;
+    cursor: default;
+    outline: none;
+  }
+
+  .rzi {
+    color: var(--rz-rating-color);
+    font-size: 1em;
+  }
+
+  .rzi-ban {
+    color: var(--rz-rating-ban-icon-color);
+
+    &:before {
+      content: $rating-ban-icon;
+    }
+  }
+
+  .rzi-star-o {
+    opacity: var(--rz-rating-opacity);
+
+    &:before {
+      content: "star_border";
+    }
+  }
+
+  .rzi-star {
+    color: var(--rz-rating-selected-color);
+
+    &:before {
+      content: "star";
+    }
+  }
+}
+
+.rz-rating:not(.rz-state-disabled):not(.rz-state-readonly) {
+  .rzi-star-o {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--rz-rating-selected-color);
+
+      &:before {
+        content: "star";
+      }
+    }
+  }
+
+  .rzi-ban {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--rz-rating-selected-color);
+    }
+  }
+}

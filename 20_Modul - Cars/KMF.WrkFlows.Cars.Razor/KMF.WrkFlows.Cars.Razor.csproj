@@ -13,12 +13,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
-    <PackageReference Include="Radzen.Blazor" Version="3.12.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\90_Framework\MYKEY.FxCore.Razor\MYKEY.FxCore.Razor.vbproj" />
     <ProjectReference Include="..\..\90_Framework\MYKEY.FxCore.Web.Razor\MYKEY.FxCore.Web.Razor.csproj" />
+    <ProjectReference Include="..\..\90_Framework\Radzen.Blazor\Radzen.Blazor.csproj" />
     <ProjectReference Include="..\KMF.WrkFlows.Cars.Web\KMF.WrkFlows.Cars.Web.vbproj" />
   </ItemGroup>
 

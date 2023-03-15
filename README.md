@@ -24,3 +24,7 @@ Anmerkung: Aktuell kommt es da zu einem Fehler, weil ja keine DB-Anbindung ist -
 90_Framework
 
 Hier sind die von mir entwickelten Projekte die mein Framework darstellen. Um das Haupt-Projekt nicht zu unübersichtlich zu machen, wollte ich die aktuellen DLLs angebinden - zu finden in dem Verzeichnis DLL. Aber anscheinend klappt da was mit dem "Auflösen" der Referenzen nicht, darum muss ich einige Projekte doch hier ablegen
+
+
+Dieser Prototyp entstand mit freundlicher Unterstützung von:
+Mathias Winter (PI-Informatik)

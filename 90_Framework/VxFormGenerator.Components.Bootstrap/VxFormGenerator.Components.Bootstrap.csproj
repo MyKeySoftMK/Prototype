@@ -35,4 +35,9 @@
     <ProjectReference Include="..\VxFormGenerator.Components.Plain\VxFormGenerator.Components.Plain.csproj" />
     <ProjectReference Include="..\VxFormGenerator.Core\VxFormGenerator.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="Properties\launchSettings.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

@@ -1,0 +1,88 @@
+﻿@using MYKEY.FxCore.Razor
+@using KMF.WrkFlows.Application
+
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">@ApplicationSettings.PUBLICPRODUCTNAME</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Start
+            </NavLink>
+        </li>
+
+        <!-- Dynamic Menu -->
+        @foreach (var item in navItems)
+        {
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="@item.Url">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> @item.Name
+                </NavLink>
+            </li>
+        }
+   
+
+        <RadzenPanelMenu>
+            <ChildContent>
+                @foreach (var item in navLists)
+                {            
+                    <RadzenPanelMenuItem Text="@item.Modulname">
+                        <ChildContent>
+                            @foreach (var subitem in item.MenuList)
+                            {
+                                <RadzenPanelMenuItem Text="@subitem.Name" Path="@subitem.Url"/>
+                            }
+                        </ChildContent>
+                    </RadzenPanelMenuItem>
+                }
+            </ChildContent>
+        </RadzenPanelMenu>
+
+
+        <!-- Settings-Menue -->
+         <li class="nav-item px-3">
+            <NavLink class="nav-link" href="/settings" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Einstellungen
+            </NavLink>
+        </li>
+
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    // Default Menu
+    List<NavItem> navItems = new List<NavItem>();
+
+    // Radzen Menu
+    List<NavListItem> navLists = new List<NavListItem>();
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var modules = AssemblyScanning.GetInstances<IModule>();
+
+        foreach (var item in modules)
+        {
+            NavListItem _modulData = new NavListItem();
+            _modulData.Modulname = item.Name;
+            _modulData.MenuList.AddRange(item.NavItems);
+            navLists.Add(_modulData);
+
+            navItems.AddRange(item.NavItems);
+        }
+    }
+}
